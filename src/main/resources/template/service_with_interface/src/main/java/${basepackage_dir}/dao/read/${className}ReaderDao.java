@@ -13,9 +13,9 @@ public interface ${className}ReaderDao {
     ${className} selectByPrimaryKey(Long id);
 
     /** 
-     * TODO(这里用一句话描述这个方法的作用). <br/> 
+     *
      * 
-     * @author zihong 
+     * @author ${author}
      * @date: 2018年4月9日 下午7:46:08
      * @version 1.0
      *
@@ -25,10 +25,10 @@ public interface ${className}ReaderDao {
     List<${className}> getBy(${className} t);
 
     /** 
-     * TODO(这里用一句话描述这个方法的作用). <br/> 
+     *
      * 
-     * @author zihong 
-     * @date: 2018年4月9日 下午7:46:16
+     * @author ${author}
+     * ${time}
      * @version 1.0
      *
      * @param paramMap
@@ -37,10 +37,10 @@ public interface ${className}ReaderDao {
     Long listPageCount(Map<String, Object> paramMap);
 
     /** 
-     * TODO(这里用一句话描述这个方法的作用). <br/> 
+     *
      * 
-     * @author zihong 
-     * @date: 2018年4月9日 下午7:46:36
+     * @author ${author}
+     * ${time}
      * @version 1.0
      *
      * @param t

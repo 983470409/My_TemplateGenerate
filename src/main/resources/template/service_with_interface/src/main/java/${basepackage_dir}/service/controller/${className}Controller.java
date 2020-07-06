@@ -45,7 +45,7 @@ import ${basepackage}.facade.${className}Facade;
 @RestController
 @RequestMapping("${classNameLower}")
 public class ${className}Controller {
-    private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(${className}Controller.class);
     
    
     @RequestMapping("/add")

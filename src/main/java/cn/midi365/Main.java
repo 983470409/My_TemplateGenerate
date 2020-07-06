@@ -9,7 +9,7 @@ import cn.org.rapid_framework.generator.GeneratorFacade;
 
 /**
  *
- * @author zihong
+ * @author ${author}
  * @date: 2018年4月8日 下午2:06:44
  * @version 1.0
  * @since JDK 1.7

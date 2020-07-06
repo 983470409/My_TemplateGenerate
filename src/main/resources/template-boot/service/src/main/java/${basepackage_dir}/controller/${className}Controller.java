@@ -42,61 +42,63 @@ import ${basepackage}.vo.${className}Param;
 
 import ${basepackage}.service.${className}Service;
 
-
+/**
+ <#include "/java_description.include">
+ */
 @RestController
 @RequestMapping("/")
 public class ${className}Controller {
-    private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
-    
+
+    private static final Logger logger = LoggerFactory.getLogger(${className}Controller.class);
    
     @Autowired
     private ${className}Service ${classNameLower}Service;
 
     @RequestMapping(value="${classNameLower}/get${className}s")
-    public BaseResult<List<${className}>> get${className}s(@RequestBody ${className}Param param ) throws Exception {
+    public ApiResult<List<${className}>> get${className}s(@RequestBody ${className}Param param ) throws Exception {
         logger.info("接收的参数为 {} " ,JSONObject.toJSON(param));
         ${className} t = new ${className}();
         PropertyUtils.copyProperties(t, param);
-        return  new  BaseResult<> (${classNameLower}Service.get${className}sBy(t));
+        return  new  ApiResult<> (${classNameLower}Service.get${className}sBy(t));
     }
 
     @RequestMapping(value="${classNameLower}/get${className}ById")
-    public BaseResult<${className}> get${className}ById( @RequestParam("id") long id) throws Exception {
-        return new  BaseResult<> (${classNameLower}Service.getById(id));
+    public ApiResult<${className}> get${className}ById( @RequestParam("id") long id) throws Exception {
+        return new  ApiResult<> (${classNameLower}Service.getById(id));
     }
 
     @RequestMapping(value="${classNameLower}/get${className}")
-    public BaseResult<${className}> get${className} (@RequestBody ${className}Param param) throws Exception {
+    public ApiResult<${className}> get${className} (@RequestBody ${className}Param param) throws Exception {
         
         logger.info(" ${classNameLower}/get${className} 接收的参数为 {} " ,JSONObject.toJSON(param));
         ${className} t = new ${className}();
         PropertyUtils.copyProperties(t, param);
-        return  new  BaseResult<> (${classNameLower}Service.get${className}By(t));
+        return  new  ApiResult<> (${classNameLower}Service.get${className}By(t));
     }
 
     @RequestMapping(value="${classNameLower}/save")
-    public BaseResult<${className}> save(@RequestBody ${className}Param param)  throws Exception {
+    public ApiResult<${className}> save(@RequestBody ${className}Param param)  throws Exception {
         
         logger.info("${classNameLower}/save 接收的参数为 {} " ,JSONObject.toJSON(param));
         ${className} t = new ${className}();
         PropertyUtils.copyProperties(t, param);
-        return new  BaseResult<> ( ${classNameLower}Service.save(t));
+        return new  ApiResult<> ( ${classNameLower}Service.save(t));
     }
 
     @RequestMapping(value="${classNameLower}/update")
-    public BaseResult<${className}> update(@RequestBody ${className}Param param) throws Exception {
+    public ApiResult<${className}> update(@RequestBody ${className}Param param) throws Exception {
         
         logger.info(" ${classNameLower}/update 接收的参数为 {} " ,JSONObject.toJSON(param));
         ${className} t = new ${className}();
         PropertyUtils.copyProperties(t, param);
-        return new  BaseResult<> (${classNameLower}Service.update(t));
+        return new  ApiResult<> (${classNameLower}Service.update(t));
     }
 
     @RequestMapping(value="${classNameLower}/listPage")
-    public BaseResult<PageBean<${className}>> listPage(@RequestBody PageParam pageParam) throws Exception {
+    public ApiResult<PageBean<${className}>> listPage(@RequestBody PageParam pageParam) throws Exception {
         
         logger.info("${classNameLower}/listPage 接收的参数为 {} " ,JSONObject.toJSON(pageParam));
-        return new  BaseResult<> ((PageBean<${className}>)${classNameLower}Service.listPage(pageParam));
+        return new  ApiResult<> ((PageBean<${className}>)${classNameLower}Service.listPage(pageParam));
     }
 
 }

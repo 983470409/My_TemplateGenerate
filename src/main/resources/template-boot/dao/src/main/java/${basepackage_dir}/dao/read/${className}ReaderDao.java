@@ -6,48 +6,46 @@ package ${basepackage}.dao.read;
 
 import java.util.List;
 import java.util.Map;
-import ${basepackage}.entity.${className};
+import ${basepackage}.vo.${className};
 
 
+/**
+ <#include "/java_description.include">
+ */
 public interface ${className}ReaderDao {
+    /**
+     * 根据主键id获得数据
+     * @param id
+     * @return
+     */
     ${className} selectByPrimaryKey(Long id);
 
-    /** 
-     * TODO(这里用一句话描述这个方法的作用). <br/> 
-     * 
-     * @author zihong 
-     * @date: 2018年4月9日 下午7:46:08
-     * @version 1.0
-     *
+    /**
+     * 通过参数获得数据
      * @param t
      * @return
-     */ 
-    List<${className}> get${className}sBy(${className} t);
+     */
+    List<${className}> get${className}s(${className}Vo t);
 
-    /** 
-     * TODO(这里用一句话描述这个方法的作用). <br/> 
-     * 
-     * @author zihong 
-     * @date: 2018年4月9日 下午7:46:16
-     * @version 1.0
-     *
+    /**
+     * 分页接口获得数据条数
      * @param paramMap
      * @return
-     */ 
-    Long listPageCount(Map<String, Object> paramMap);
+     */
+    Long listPageCount(${className}Vo t);
 
-    /** 
-     * TODO(这里用一句话描述这个方法的作用). <br/> 
-     * 
-     * @author zihong 
-     * @date: 2018年4月9日 下午7:46:36
-     * @version 1.0
-     *
+    /**
+     * 获得单个数据
      * @param t
      * @return
-     */ 
-    ${className} get${className}By(${className} t);
-    
-    List< ${className}> listPage(Map<String, Object> paramMap);
+     */
+    ${className} get${className}By(${className}Vo t);
+
+    /**
+     * 获得分页数据
+     * @param paramMap
+     * @return
+     */
+    List< ${className}> listPage(${className}Vo t);
 
 }

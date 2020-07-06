@@ -1,29 +1,26 @@
 <#include "/java_copyright.include">  
 <#assign className = table.className>     
 <#assign classNameLower = className?uncap_first>   
-package ${basepackage}.param;
+package ${basepackage}.vo;
  
-import java.util.Date;
+import java.sql.Date;
 import com.gzhc365.ehis.core.vo.BaseFacadeParam;
- 
-public class ${className}Param extends BaseFacadeParam {  
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ <#include "/java_description.include">
+ */
+public class ${className}Vo extends BaseVo {
     private static final long serialVersionUID = 5454155825314635342L;  
       
-    <#list table.columns as column>  
-    /**  
-     * ${column.remarks}  
-     */ 
+    <#list table.columns as column>
+    @ApiModelProperty(value = "${column.remarks}")
     private ${column.simpleJavaType} ${column.columnNameLower};  
     </#list>  
- 
-<@generateJavaColumns/> 
 
 
-
-public static  ${className}Param new${className}Param () {
-	return new ${className}Param ();
-}
-
+<@generateJavaColumns/>  
  
 <#macro generateJavaColumns>  
     <#list table.columns as column>  

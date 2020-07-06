@@ -35,7 +35,7 @@ import com.eteam.common.utils.Utils;
 /**
  * Description: 营销小程序过滤器
  * 
- * @author zihong
+ * @author ${author}
  * @date: 2018年4月10日 下午2:38:37
  * @version 1.0
  * @since JDK 1.7

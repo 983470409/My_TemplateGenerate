@@ -27,22 +27,17 @@ import ${basepackage}.service.${className}Service;
 <#include "/java_imports.include">
 
 /**
-<#include "/java_description.include">
+ <#include "/java_description.include">
  */
 @Service
 public class ${className}ServiceImpl implements ${className}Service {
-           freemarker.log.Logger logger = LoggerFactory.getLogger(getClass());
+          private static final Logger logger = LoggerFactory.getLogger(UserFacadeFallback.class);
+
 
 	    @Autowired
 	    ${className}ReaderDao ${classNameLower}ReaderDao;
 	    @Autowired
 	    ${className}WriterDao ${classNameLower}WriterDao;
-
-
-	     @Resource(name = "component-iDGenerator")
-	     private IDGenerator idDGenerator;
-
-	    private String db_pre = "${table.sqlName}";
 
 	    @Override
 	    public List<${className}> get${className}sBy(${className} t) {
@@ -56,6 +51,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	        return ${classNameLower}ReaderDao.selectByPrimaryKey(id);
 	    }
 
+		@Override
 	    public PageBean<${className}> listPage(PageParam pageParam) {
                 Map<String,Object>  paramMap = null;
                 if (pageParam.getParamMap() == null) {
@@ -78,11 +74,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 
 	    @Override
 	    public ${className} save(${className} t) {
-	    	long id = idDGenerator.next(db_pre).id;
-	        t.setId(id);
-	        if (logger.isDebugEnabled()) {
-	        logger.debug("sequence:{待保存的数据:{}", JSON.toJSONString(t));
-	        }
+
 	        int insertSelective = ${classNameLower}WriterDao.insertSelective(t);
 	        
 	        if (insertSelective > 0) {

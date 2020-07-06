@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 
-import com.gzhc365.ehis.core.vo.BaseResult;
+import com.gzhc365.ehis.core.vo.ApiResult;
 import ${basepackage}.entity.${className};
 import ${basepackage}.facade.${className}Facade;
 import ${basepackage}.vo.${className}Param;
@@ -36,50 +36,52 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gzhc365.ehis.core.vo.PageBean;
 import com.gzhc365.ehis.core.vo.PageParam;
 
-
+/**
+ <#include "/java_description.include">
+ */
 @Controller
 @RequestMapping("${appModule}/api/${classNameLower}")
 public class ${className}Controller  {
-    private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 
     @Autowired
     private ${className}Facade ${classNameLower}Facade;
 
     @ResponseBody
     @RequestMapping("/add")
-    public BaseResult add${className}(HttpServletRequest request, HttpServletResponse response, ${className}Param ${classNameLower}Param) {
-        BaseResult baseResult = new BaseResult(0, "success");
+    public ApiResult add${className}(HttpServletRequest request, HttpServletResponse response, ${className}Param ${classNameLower}Param) {
+        ApiResult ApiResult = new ApiResult(0, "success");
         try {
            ${classNameLower}Facade.save(${classNameLower}Param);
 
         } catch (Exception e) {
             logger.error("sequence:{}系统异常，请稍后重试", e);
-            baseResult.setCode(-1);
-            baseResult.setMsg("系统异常，请稍后重试");
+            ApiResult.setCode(-1);
+            ApiResult.setMsg("系统异常，请稍后重试");
         }
-        return baseResult;
+        return ApiResult;
     }
 
     @ResponseBody
     @RequestMapping("/page")
-    public BaseResult page(HttpServletRequest request, HttpServletResponse response, PageParam pageParam,
+    public ApiResult page(HttpServletRequest request, HttpServletResponse response, PageParam pageParam,
             @RequestParam Map<String, Object> paramMap) {
         Map<String, Object> map = new HashMap<>();
         logger.info("sequence:{} 分页查询的参数 map:{} pageParam: {}", JSONObject.toJSONString(map),
                 JSONObject.toJSONString(pageParam, true));
-        BaseResult baseResult = new BaseResult(0, "success");
+        ApiResult ApiResult = new ApiResult(0, "success");
         try {
             pageParam.setParamMap(paramMap);
             PageBean<?> listPage = ${classNameLower}Facade.listPage(pageParam).getData();
-            baseResult.setData(listPage);
+            ApiResult.setData(listPage);
 
         } catch (Exception e) {
             logger.error("sequence:{}系统异常，请稍后重试 error:", e);
-            baseResult.setCode(-1);
-            baseResult.setMsg("系统异常，请稍后重试");
+            ApiResult.setCode(-1);
+            ApiResult.setMsg("系统异常，请稍后重试");
         }
 
-        return baseResult;
+        return ApiResult;
     }
 
     /**
@@ -87,35 +89,35 @@ public class ${className}Controller  {
      */
     @ResponseBody
     @RequestMapping("/${classNameLower}s")
-    public BaseResult ${classNameLower}s(HttpServletRequest request, HttpServletResponse response, ${className}Param ${classNameLower}Param) {
-        BaseResult baseResult = new BaseResult(0, "success");
+    public ApiResult ${classNameLower}s(HttpServletRequest request, HttpServletResponse response, ${className}Param ${classNameLower}Param) {
+        ApiResult ApiResult = new ApiResult(0, "success");
         try {
 
             List<${className}> ${classNameLower}s = ${classNameLower}Facade.get${className}s(${classNameLower}Param).getData();
-            baseResult.setData(${classNameLower}s);
+            ApiResult.setData(${classNameLower}s);
 
         } catch (Exception e) {
             logger.error("sequence:{}系统异常，请稍后重试", e);
-            baseResult.setCode(-1);
-            baseResult.setMsg("系统异常，请稍后重试");
+            ApiResult.setCode(-1);
+            ApiResult.setMsg("系统异常，请稍后重试");
         }
 
-        return baseResult;
+        return ApiResult;
     }
 
     @RequestMapping("/${classNameLower}")
-    public BaseResult ${classNameLower}(HttpServletRequest request, HttpServletResponse response, ${className}Param ${classNameLower}Param) {
-        BaseResult baseResult = new BaseResult(0, "success");
+    public ApiResult ${classNameLower}(HttpServletRequest request, HttpServletResponse response, ${className}Param ${classNameLower}Param) {
+        ApiResult ApiResult = new ApiResult(0, "success");
         try {
             ${className} ${classNameLower} = ${classNameLower}Facade.get${className}(${classNameLower}Param).getData();
-            baseResult.setData(${classNameLower});
+            ApiResult.setData(${classNameLower});
 
         } catch (Exception e) {
             logger.error("sequence:{}系统异常，请稍后重试", e);
-            baseResult.setCode(-1);
-            baseResult.setMsg("系统异常，请稍后重试");
+            ApiResult.setCode(-1);
+            ApiResult.setMsg("系统异常，请稍后重试");
         }
-        return baseResult;
+        return ApiResult;
     }
 
 }

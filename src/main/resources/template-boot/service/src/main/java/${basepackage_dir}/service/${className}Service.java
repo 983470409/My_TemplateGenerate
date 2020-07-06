@@ -7,7 +7,7 @@ import com.gzhc365.ehis.core.service.BaseService;
 <#include "/java_imports.include">
 
 /**
-<#include "/java_description.include">
+ <#include "/java_description.include">
  */
 public interface ${className}Service  {
 	

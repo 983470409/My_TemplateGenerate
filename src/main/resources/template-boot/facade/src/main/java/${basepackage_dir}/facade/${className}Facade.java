@@ -21,30 +21,27 @@ import ${basepackage}.vo.${className}Param;
 
 
 /**
- * Description: ${className}接口
- * @author zihong
- * @version 1.0
- * @since JDK 1.7
+ <#include "/java_description.include">
  */
 @FeignClient("${application}")
 public interface ${className}Facade {
-   
+
     @RequestMapping(value="${classNameLower}/get${className}s", method = RequestMethod.GET)
-    public BaseResult<List<${className}>> get${className}s(@RequestBody ${className}Param ${classNameLower}Param );
-      
+    public ApiResult<List<${className}>> get${className}s(@RequestBody ${className}Param ${classNameLower}Param );
+
 
     @RequestMapping(value="${classNameLower}/get${className}ById", method = RequestMethod.GET)
-    public BaseResult<${className}> get${className}ById(@RequestParam("id") long id) ;
+    public ApiResult<${className}> get${className}ById(@RequestParam("id") long id);
 
     @RequestMapping(value="${classNameLower}/get${className}", method = RequestMethod.GET)
-    public BaseResult<${className}> get${className}(@RequestBody ${className}Param ${classNameLower}Param);
+    public ApiResult<${className}> get${className}(@RequestBody ${className}Param ${classNameLower}Param);
 
     @RequestMapping(value="${classNameLower}/save", method = RequestMethod.GET)
-    public BaseResult<${className}> save(@RequestBody ${className}Param ${classNameLower}Param) ;
+    public ApiResult<${className}> save(@RequestBody ${className}Param ${classNameLower}Param) ;
 
     @RequestMapping(value="${classNameLower}/update", method = RequestMethod.GET)
-    public BaseResult<${className}> update(@RequestBody ${className}Param ${classNameLower}Param );
+    public ApiResult<${className}> update(@RequestBody ${className}Param ${classNameLower}Param );
 
     @RequestMapping(value="${classNameLower}/listPage", method = RequestMethod.GET)
-    public BaseResult<PageBean<${className}>> listPage(@RequestBody PageParam pageParam);
+    public ApiResult<PageBean<${className}>> listPage(@RequestBody PageParam pageParam);
 }

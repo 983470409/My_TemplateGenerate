@@ -37,7 +37,7 @@ import ${basepackage}.facade.${className}Facade;
 @Controller
 @RequestMapping("${appModule}/api/${classNameLower}")
 public class ${className}Controller extends BaseController {
-    private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(${className}Controller.class);
     
     @Autowired
     private  ${className}Service  ${classNameLower}Service;
