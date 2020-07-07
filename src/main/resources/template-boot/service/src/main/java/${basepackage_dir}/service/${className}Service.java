@@ -3,7 +3,7 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.service;
 
-import com.gzhc365.ehis.core.service.BaseService;
+import com.gzhc365.template.core.service.BaseService;
 <#include "/java_imports.include">
 
 /**

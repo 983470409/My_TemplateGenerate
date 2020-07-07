@@ -3,9 +3,9 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.facade;
 
-import com.gzhc365.ehis.core.vo.BaseFacadeParam;
-import com.gzhc365.ehis.core.vo.PageBean;
-import com.gzhc365.ehis.core.vo.PageParam;
+import com.gzhc365.template.core.vo.BaseFacadeParam;
+import com.gzhc365.template.core.vo.PageBean;
+import com.gzhc365.template.core.vo.PageParam;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,11 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Map;
-import feign.hystrix.FallbackFactory;
-import ${basepackage}.entity.${className};
-import ${basepackage}.vo.${className}Param;
+{basepackage}.entity.${className};{basepackage}.vo.${className}Param;
 
 
 /**

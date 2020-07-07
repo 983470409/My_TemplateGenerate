@@ -6,7 +6,8 @@ package ${basepackage}.dao.read;
 
 import java.util.List;
 import java.util.Map;
-import ${basepackage}.vo.${className};
+import ${basepackage}.vo.${className}Vo;
+import ${basepackage}.entity.${className};
 
 
 /**
@@ -29,7 +30,7 @@ public interface ${className}ReaderDao {
 
     /**
      * 分页接口获得数据条数
-     * @param paramMap
+     * @param t
      * @return
      */
     Long listPageCount(${className}Vo t);
@@ -43,7 +44,7 @@ public interface ${className}ReaderDao {
 
     /**
      * 获得分页数据
-     * @param paramMap
+     * @param t
      * @return
      */
     List< ${className}> listPage(${className}Vo t);

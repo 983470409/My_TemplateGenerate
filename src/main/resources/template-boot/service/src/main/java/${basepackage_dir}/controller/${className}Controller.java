@@ -4,43 +4,32 @@
 
 package ${basepackage}.controller;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.gzhc365.ehis.core.utils.Utils;
+import com.gzhc365.template.core.utils.Utils;
 
 
 import com.alibaba.fastjson.JSONObject;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.gzhc365.ehis.core.vo.PageParam;
-import com.gzhc365.ehis.core.vo.PageBean;
+import com.gzhc365.template.core.vo.PageParam;
+import com.gzhc365.template.core.vo.PageBean;
 
 
-import ${basepackage}.entity.${className};
-import ${basepackage}.facade.${className}Facade;
-import ${basepackage}.vo.${className}Param;
-
-import ${basepackage}.service.${className}Service;
+{basepackage}.entity.${className};
+{basepackage}.facade.${className}Facade;
+{basepackage}.vo.${className}Param;{basepackage}.service.${className}Service;
 
 /**
  <#include "/java_description.include">

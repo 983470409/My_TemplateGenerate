@@ -2,18 +2,19 @@
  * <p>Copyright: Copyright (c) 2016</p>
  * <p>Company: gzhc365 </p>
  */
-package com.gzhc365.ehis;
+package com.gzhc365.template;
 
 import cn.org.rapid_framework.generator.GeneratorFacade;
 
 
 /**
- *
- * @author ${author}
- * @date: 2018年4月8日 下午2:06:44 * @version 1.0
- * @since JDK 1.7
+ * 模板工程启动类
+ * @author zhang_yx
+ * @date 2020/7/1
+ * @time 17:58
+ * @since JDK 1.8
  */
-public class Main { 
+public class TemplateStarter {
 
     public static void main(String[] args) throws Exception  {
         GeneratorFacade g = new GeneratorFacade();

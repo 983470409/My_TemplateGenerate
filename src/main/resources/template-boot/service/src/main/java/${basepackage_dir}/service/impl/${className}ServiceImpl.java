@@ -4,24 +4,17 @@
 package ${basepackage}.service.impl;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSON;
-import com.gzhc365.ehis.component.id.IDGenerator;
-import com.gzhc365.ehis.core.vo.PageBean;
-import com.gzhc365.ehis.core.vo.PageParam;
-import ${basepackage}.dao.read.${className}ReaderDao;
-import ${basepackage}.dao.write.${className}WriterDao;
-import ${basepackage}.service.${className}Service;
+import com.gzhc365.template.component.id.IDGenerator;
+import com.gzhc365.template.core.vo.PageBean;
+import com.gzhc365.template.core.vo.PageParam;
+{basepackage}.dao.read.${className}ReaderDao;
+{basepackage}.dao.write.${className}WriterDao;{basepackage}.service.${className}Service;
 
 
 <#include "/java_imports.include">
