@@ -24,6 +24,13 @@ public interface ${className}WriterDao {
      * @param t
      * @return
      */
+    int deleteSelective( ${className} t);
+
+    /**
+     * 插入数据
+     * @param t
+     * @return
+     */
     int insertSelective( ${className} t);
 
     /**
