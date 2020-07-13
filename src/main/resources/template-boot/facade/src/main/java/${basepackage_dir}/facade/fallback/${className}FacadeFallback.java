@@ -53,6 +53,10 @@ public class ${className}FacadeFallback implements FallbackFactory<${className}F
                 return ApiResult.error("服务繁忙，请稍候再试");
             }
 
+            public ApiResult<${className}> delete(${className}Vo ${classNameLower}Vo){
+                return ApiResult.error("服务繁忙，请稍候再试");
+            }
+
             public ApiResult<PageBean<${className}>> listPage(${className}Vo ${classNameLower}Vo ){
                 return ApiResult.error("服务繁忙，请稍候再试");
             }

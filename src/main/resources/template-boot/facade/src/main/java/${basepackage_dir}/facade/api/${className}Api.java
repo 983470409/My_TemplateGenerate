@@ -34,6 +34,9 @@ public interface ${className}Api{
     @RequestMapping(value="${classNameLower}/update",  method = { RequestMethod.GET })
     public ApiResult<${className}> update(@RequestBody ${className}Vo ${classNameLower}Vo);
 
+    @RequestMapping(value="${classNameLower}/delete",  method = { RequestMethod.GET })
+    public ApiResult<${className}> delete(@RequestBody ${className}Vo ${classNameLower}Vo);
+
     @RequestMapping(value="${classNameLower}/listPage",  method = { RequestMethod.GET })
     public ApiResult<PageBean<${className}>> listPage(@RequestBody ${className}Vo ${classNameLower}Vo);
 }

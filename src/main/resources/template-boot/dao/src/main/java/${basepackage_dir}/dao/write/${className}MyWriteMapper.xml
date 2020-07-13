@@ -12,6 +12,23 @@
         where id = <@mapperEl "id,jdbcType=BIGINT"/>
 	</delete>
 
+	<delete id="deleteSelective" parameterType="${basepackage}.entity.${className}">
+		delete from ${table.sqlName}
+		where 1=1 and id = <@mapperEl "id,jdbcType=BIGINT"/>
+		<#list table.columns as column>
+		<#if column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
+			and <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}"/>
+		</if>
+		</#if>
+		<#if !column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null">
+			and <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}"/>
+		</if>
+		</#if>
+		</#list>
+	</delete>
+
 	<insert id="insertSelective" parameterType="${basepackage}.entity.${className}">
 		insert into ${table.sqlName}
 		<trim prefix="(" suffix=")" suffixOverrides=",">

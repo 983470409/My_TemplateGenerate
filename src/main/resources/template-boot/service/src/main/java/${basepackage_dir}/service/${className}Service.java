@@ -38,14 +38,14 @@ public interface ${className}Service  {
      * @param ${classNameLower}
      * @return
      */
-    ${className} save(${className}Vo ${classNameLower}Vo) ;
+    ${className} save(${className} ${classNameLower});
 
     /**
      * 更新对象
      * @param ${classNameLower}
      * @return
      */
-    ${className} update(${className}Vo ${classNameLower}Vo);
+    ${className} update(${className} ${classNameLower});
 
     /**
      * 通过Vo获得单个对象
@@ -54,6 +54,11 @@ public interface ${className}Service  {
      */
     ${className} get${className}By(${className}Vo ${classNameLower}Vo );
 
+    /**
+     * 删除
+     * @param ${classNameLower}
+     * @return
+     */
+    ${className} delete(${className} ${classNameLower});
 
-    
 }

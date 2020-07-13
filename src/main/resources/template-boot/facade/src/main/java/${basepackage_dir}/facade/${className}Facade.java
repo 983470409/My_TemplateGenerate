@@ -11,7 +11,7 @@ import ${basepackage}.api.${className}Api;
 /**
  <#include "/java_description.include">
  */
-@FeignClient(value = "${application}", url="<@url "${application}"/>")
+@FeignClient(value = "${application}", url="<@url "${application}"/>", , fallbackFactory = ${className}Fallback.class)
 public interface ${className}Facade extends ${className}Api{
 
 }

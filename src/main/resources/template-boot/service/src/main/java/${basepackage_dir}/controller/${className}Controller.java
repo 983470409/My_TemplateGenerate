@@ -68,6 +68,14 @@ public class ${className}Controller implements ${className}Api{
     }
 
     @Override
+    public ApiResult<${className}> delete(@RequestBody ${className}Vo ${classNameLower}Vo){
+        logger.info(" ${classNameLower}/delete 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}Vo));
+        ${className} ${classNameLower} = new ${className}();
+        BeanUtils.copyProperties(${classNameLower}, ${classNameLower}Vo);
+        return new  ApiResult<>(${classNameLower}Service.delete(${classNameLower}));
+    }
+
+    @Override
     public ApiResult<PageBean<${className}>> listPage(@RequestBody ${className}Vo ${classNameLower}Vo){
         logger.info("${classNameLower}/listPage 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}Vo));
         return new  ApiResult<>((PageBean<${className}>)${classNameLower}Service.listPage(${classNameLower}Vo));
