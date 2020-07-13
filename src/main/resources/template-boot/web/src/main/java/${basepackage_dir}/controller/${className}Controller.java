@@ -1,4 +1,4 @@
-<#include "/java_copyright.include">
+
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 
@@ -19,16 +19,12 @@ import org.springframework.stereotype.Controller;
 
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
-
-
-import com.gzhc365.template.core.vo.ApiResult;
-{basepackage}.entity.${className};
-{basepackage}.facade.${className}Facade;
-{basepackage}.vo.${className}Param;
-
-import com.gzhc365.template.core.vo.PageBean;
-import com.gzhc365.template.core.vo.PageParam;
+import ${basepackage}.entity.${className};
+import ${basepackage}.facade.${className}Facade;
+import ${basepackage}.vo.${className}Vo;
 import io.swagger.annotations.Api;
+import com.gzhc365.${deptFlag}.common.PageBean;
+import com.gzhc365.cloud.commons.api.ApiResult;
 /**
  <#include "/java_description.include">
  */
@@ -78,7 +74,7 @@ public class ${className}Controller  {
      * 
      */
     @ResponseBody
-    @RequestMapping("/${classNameLower}s")
+    @RequestMapping("/get${classNameLower}s")
     public ApiResult ${classNameLower}s(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
         ApiResult ApiResult = new ApiResult(0, "success");
         try {
@@ -93,7 +89,7 @@ public class ${className}Controller  {
         return ApiResult;
     }
 
-    @RequestMapping("/${classNameLower}")
+    @RequestMapping("/get${classNameLower}")
     public ApiResult ${classNameLower}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
         ApiResult ApiResult = new ApiResult(0, "success");
         try {

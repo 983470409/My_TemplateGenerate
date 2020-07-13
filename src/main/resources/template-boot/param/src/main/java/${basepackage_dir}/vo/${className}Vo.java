@@ -11,6 +11,7 @@ import java.util.Date;
 /**
  <#include "/java_description.include">
  */
+@ApiModel(value = "${className}Vo", description = "${className}vo对象")
 public class ${className}Vo extends BaseVo implements Serializable {
     //TODO 添加序列化Id
 

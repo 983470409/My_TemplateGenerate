@@ -1,10 +1,9 @@
-<#include "/java_copyright.include">
+
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>   
 
 package ${basepackage}.dao.write;
 
-import java.util.List;
 import ${basepackage}.entity.${className};
 
 

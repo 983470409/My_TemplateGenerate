@@ -1,11 +1,10 @@
-<#include "/java_copyright.include">
+
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>   
 
 package ${basepackage}.dao.read;
 
 import java.util.List;
-import java.util.Map;
 import ${basepackage}.vo.${className}Vo;
 import ${basepackage}.entity.${className};
 
@@ -47,6 +46,6 @@ public interface ${className}ReaderDao {
      * @param t
      * @return
      */
-    List< ${className}> listPage(${className}Vo t);
+    List<${className}> listPage(${className}Vo t);
 
 }

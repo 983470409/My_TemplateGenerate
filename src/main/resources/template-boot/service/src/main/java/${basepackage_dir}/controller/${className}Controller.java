@@ -1,36 +1,26 @@
-<#include "/java_copyright.include">
+
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 
 package ${basepackage}.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.gzhc365.template.core.utils.Utils;
-
-
 import com.alibaba.fastjson.JSONObject;
-
 import org.springframework.stereotype.Controller;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.gzhc365.template.core.vo.PageParam;
-import com.gzhc365.template.core.vo.PageBean;
-
-
-{basepackage}.entity.${className};
-{basepackage}.facade.${className}Facade;
-{basepackage}.vo.${className}Param;{basepackage}.service.${className}Service;
-
+import ${basepackage}.entity.${className};
+import ${basepackage}.facade.${className}Facade;
+import ${basepackage}.vo.${className}Vo;
+import ${basepackage}.service.${className}Service;
+import java.util.List;
+import org.springframework.beans.BeanUtils;
+import com.gzhc365.${deptFlag}.common.PageBean;
+import com.gzhc365.cloud.commons.api.ApiResult;
 /**
  <#include "/java_description.include">
  */
@@ -44,50 +34,43 @@ public class ${className}Controller {
     private ${className}Service ${classNameLower}Service;
 
     @RequestMapping(value="${classNameLower}/get${className}s")
-    public ApiResult<List<${className}>> get${className}s(@RequestBody ${className}Param param ) throws Exception {
-        logger.info("接收的参数为 {} " ,JSONObject.toJSON(param));
-        ${className} t = new ${className}();
-        PropertyUtils.copyProperties(t, param);
-        return  new  ApiResult<> (${classNameLower}Service.get${className}sBy(t));
+    public ApiResult<List<${className}>> get${className}s(@RequestBody ${className}Vo ${classNameLower}Vo) throws Exception {
+        logger.info("接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}Vo));
+        return  new  ApiResult<>(${classNameLower}Service.get${className}sBy(${classNameLower}Vo));
     }
 
     @RequestMapping(value="${classNameLower}/get${className}ById")
     public ApiResult<${className}> get${className}ById( @RequestParam("id") long id) throws Exception {
-        return new  ApiResult<> (${classNameLower}Service.getById(id));
+        return new  ApiResult<>(${classNameLower}Service.getById(id));
     }
 
     @RequestMapping(value="${classNameLower}/get${className}")
-    public ApiResult<${className}> get${className} (@RequestBody ${className}Param param) throws Exception {
-        
-        logger.info(" ${classNameLower}/get${className} 接收的参数为 {} " ,JSONObject.toJSON(param));
-        ${className} t = new ${className}();
-        PropertyUtils.copyProperties(t, param);
-        return  new  ApiResult<> (${classNameLower}Service.get${className}By(t));
+    public ApiResult<${className}> get${className} (@RequestBody ${className}Vo ${classNameLower}Vo) throws Exception {
+        logger.info(" ${classNameLower}/get${className} 接收的参数为 {} " ,JSONObject.toJSON( ${classNameLower}Vo));
+        return  new  ApiResult<>(${classNameLower}Service.get${className}By(${classNameLower}Vo));
     }
 
     @RequestMapping(value="${classNameLower}/save")
-    public ApiResult<${className}> save(@RequestBody ${className}Param param)  throws Exception {
-        
-        logger.info("${classNameLower}/save 接收的参数为 {} " ,JSONObject.toJSON(param));
-        ${className} t = new ${className}();
-        PropertyUtils.copyProperties(t, param);
-        return new  ApiResult<> ( ${classNameLower}Service.save(t));
+    public ApiResult<${className}> save(@RequestBody ${className}Vo ${classNameLower}Vo)  throws Exception {
+        logger.info("${classNameLower}/save 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}Vo));
+        ${className} ${classNameLower} = new ${className}();
+        BeanUtils.copyProperties(${classNameLower}, ${classNameLower}Vo);
+        return new  ApiResult<>( ${classNameLower}Service.save(${classNameLower}));
     }
 
     @RequestMapping(value="${classNameLower}/update")
-    public ApiResult<${className}> update(@RequestBody ${className}Param param) throws Exception {
+    public ApiResult<${className}> update(@RequestBody ${className}Vo ${classNameLower}Vo) throws Exception {
         
-        logger.info(" ${classNameLower}/update 接收的参数为 {} " ,JSONObject.toJSON(param));
-        ${className} t = new ${className}();
-        PropertyUtils.copyProperties(t, param);
-        return new  ApiResult<> (${classNameLower}Service.update(t));
+        logger.info(" ${classNameLower}/update 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}Vo));
+        ${className} ${classNameLower} = new ${className}();
+        BeanUtils.copyProperties(${classNameLower}, ${classNameLower}Vo);
+        return new  ApiResult<>(${classNameLower}Service.update(${classNameLower}));
     }
 
     @RequestMapping(value="${classNameLower}/listPage")
-    public ApiResult<PageBean<${className}>> listPage(@RequestBody PageParam pageParam) throws Exception {
-        
-        logger.info("${classNameLower}/listPage 接收的参数为 {} " ,JSONObject.toJSON(pageParam));
-        return new  ApiResult<> ((PageBean<${className}>)${classNameLower}Service.listPage(pageParam));
+    public ApiResult<PageBean<${className}>> listPage(@RequestBody ${className}Vo ${classNameLower}Vo) throws Exception {
+        logger.info("${classNameLower}/listPage 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}Vo));
+        return new  ApiResult<>((PageBean<${className}>)${classNameLower}Service.listPage(${classNameLower}Vo));
     }
 
 }
