@@ -6,7 +6,7 @@
 package ${basepackage}.facade;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import ${basepackage}.api.JudgeApi;
+import ${basepackage}.api.${className}Api;
 
 /**
  <#include "/java_description.include">
