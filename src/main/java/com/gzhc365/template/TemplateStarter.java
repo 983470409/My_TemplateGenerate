@@ -22,10 +22,10 @@ public class TemplateStarter {
         // 删除生成器的输出目录//
         g.deleteOutRootDir();
         // 通过数据库表生成文件
-//        g.generateByAllTable();
+        g.generateByAllTable();
         // 需要生成的表 多個用,分開 如 "t_health_inquiry","t_health_inquiry_item"
-        g.generateByTable("t_logpaltform_judge");
-}
+//        g.generateByTable("t_logpaltform_service_type");
+    }
 
 
 

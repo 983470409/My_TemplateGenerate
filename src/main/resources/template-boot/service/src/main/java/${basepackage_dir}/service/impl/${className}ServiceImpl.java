@@ -83,11 +83,8 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @return
 	 */
 	@Override
-	public ${className} save(${className}Vo ${classNameLower}Vo) {
-		${className} ${classNameLower} = new ${className}();
-		BeanUtils.copyProperties(${classNameLower}Vo, ${classNameLower});
+	public ${className} save(${className} ${classNameLower}) {
 		int insertSelective = ${classNameLower}WriterDao.insertSelective(${classNameLower});
-
 		if (insertSelective > 0) {
 			return ${classNameLower};
 		} else {
@@ -102,13 +99,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @return
 	 */
 	@Override
-	public ${className} update(final ${className}Vo ${classNameLower}Vo){
-
-//		if (${classNameLower}.getId() ==null ) {
-//		throw new Exception("id为空");
-//		}
-		${className} ${classNameLower} = new ${className}();
-		BeanUtils.copyProperties(${classNameLower}Vo, ${classNameLower});
+	public ${className} update(${className} ${classNameLower}){
 		int flag = ${classNameLower}WriterDao.updateByPrimaryKeySelective(${classNameLower});
 		if (flag > 0) {
 			return ${classNameLower};
@@ -117,21 +108,15 @@ public class ${className}ServiceImpl implements ${className}Service {
 		}
 	}
 
-/**
- * 更新对象
- * @param ${classNameLower}
- * @return
- */
+	/**
+	 * 删除对象
+	 * @param ${classNameLower}
+	 * @return
+	 */
 	@Override
-	public ${className} update(final ${className}Vo ${classNameLower}Vo){
-
-		//		if (${classNameLower}.getId() ==null ) {
-		//		throw new Exception("id为空");
-		//		}
-			${className} ${classNameLower} = new ${className}();
-			BeanUtils.copyProperties(${classNameLower}Vo, ${classNameLower});
-			int flag = ${classNameLower}WriterDao.updateByPrimaryKeySelective(${classNameLower});
-			if (flag > 0) {
+	public ${className} delete(${className} ${classNameLower}){
+		int flag = ${classNameLower}WriterDao.deleteSelective(${classNameLower});
+		if (flag > 0) {
 			return ${classNameLower};
 		} else {
 			return null;

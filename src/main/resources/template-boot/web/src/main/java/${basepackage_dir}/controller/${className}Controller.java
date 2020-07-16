@@ -36,75 +36,82 @@ public class ${className}Controller  {
     @ResponseBody
     @RequestMapping("/add")
     public ApiResult add${className}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult ApiResult = new ApiResult(0, "新增成功");
+        ApiResult apiResult = new ApiResult(0, "新增成功");
         try{
            ${classNameLower}Facade.save(${classNameLower}Vo);
         }catch (Exception e){
-            logger.error("sequence:{}系统异常，请稍后重试", e);
-            ApiResult.setCode(-1);
-            ApiResult.setMsg("系统异常，请稍后重试");
+            logger.error("/add系统异常，请稍后重试", e);
+            apiResult = ApiResult.error("新增失败");
         }
-        return ApiResult;
+        return apiResult;
     }
 
     @ResponseBody
     @RequestMapping("/update")
-    public ApiResult add${className}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult ApiResult = new ApiResult(0, "更新成功");
+    public ApiResult update${className}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
+        ApiResult apiResult = new ApiResult(0, "更新成功");
         try{
             ${classNameLower}Facade.update(${classNameLower}Vo);
         }catch (Exception e){
-            logger.error("sequence:{}系统异常，请稍后重试", e);
-            ApiResult.setCode(-1);
-            ApiResult.setMsg("系统异常，请稍后重试");
+            logger.error("/update系统异常，请稍后重试", e);
+            apiResult = ApiResult.error("更新失败");
         }
-        return ApiResult;
+        return apiResult;
+    }
+
+    @ResponseBody
+    @RequestMapping("/delete")
+    public ApiResult delete${className}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
+        ApiResult apiResult = new ApiResult(0, "删除成功");
+        try{
+            ${classNameLower}Facade.delete(${classNameLower}Vo);
+        }catch (Exception e){
+            logger.error("/delete系统异常，请稍后重试:{}", e);
+            apiResult = ApiResult.error("删除失败");
+        }
+        return apiResult;
     }
 
     @ResponseBody
     @RequestMapping("/page")
     public ApiResult page(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult ApiResult = new ApiResult();
+        ApiResult apiResult = new ApiResult();
         try{
             PageBean<?> listPage = ${classNameLower}Facade.listPage(${classNameLower}Vo).getData();
-            ApiResult.setData(listPage);
+            apiResult.setData(listPage);
         }catch (Exception e){
-            logger.error("sequence:{}系统异常，请稍后重试 error:", e);
-            ApiResult.setCode(-1);
-            ApiResult.setMsg("系统异常，请稍后重试");
+            logger.error("/page系统异常，请稍后重试,{}", e);
+            apiResult = ApiResult.error("分页失败");
         }
-
-        return ApiResult;
+        return apiResult;
     }
 
 
     @ResponseBody
     @RequestMapping("/get${classNameLower}s")
     public ApiResult ${classNameLower}s(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult ApiResult = new ApiResult();
+        ApiResult apiResult = new ApiResult();
         try{
             List<${className}> ${classNameLower}s = ${classNameLower}Facade.get${className}s(${classNameLower}Vo).getData();
-            ApiResult.setData(${classNameLower}s);
+            apiResult.setData(${classNameLower}s);
         }catch (Exception e){
-            logger.error("系统异常，请稍后重试", e);
-            ApiResult.setCode(-1);
-            ApiResult.setMsg("系统异常，请稍后重试");
+            logger.error("get${classNameLower}s:系统异常，请稍后重试,{}", e);
+            apiResult = ApiResult.error("获取数据失败");
         }
-        return ApiResult;
+        return apiResult;
     }
 
     @RequestMapping("/get${classNameLower}")
     public ApiResult ${classNameLower}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult ApiResult = new ApiResult();
+        ApiResult apiResult = new ApiResult();
         try{
             ${className} ${classNameLower} = ${classNameLower}Facade.get${className}(${classNameLower}Vo).getData();
-            ApiResult.setData(${classNameLower});
+            apiResult.setData(${classNameLower});
         }catch (Exception e){
-            logger.error("sequence:{}系统异常，请稍后重试", e);
-            ApiResult.setCode(-1);
-            ApiResult.setMsg("系统异常，请稍后重试");
+            logger.error("get${classNameLower}:系统异常，请稍后重试,{}", e);
+            apiResult = ApiResult.error("获取数据失败");
         }
-        return ApiResult;
+        return apiResult;
     }
 
 }

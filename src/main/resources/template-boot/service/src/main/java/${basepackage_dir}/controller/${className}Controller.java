@@ -55,7 +55,7 @@ public class ${className}Controller implements ${className}Api{
     public ApiResult<${className}> save(@RequestBody ${className}Vo ${classNameLower}Vo){
         logger.info("${classNameLower}/save 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}Vo));
         ${className} ${classNameLower} = new ${className}();
-        BeanUtils.copyProperties(${classNameLower}, ${classNameLower}Vo);
+        BeanUtils.copyProperties(${classNameLower}Vo, ${classNameLower});
         return new  ApiResult<>( ${classNameLower}Service.save(${classNameLower}));
     }
 
@@ -63,7 +63,7 @@ public class ${className}Controller implements ${className}Api{
     public ApiResult<${className}> update(@RequestBody ${className}Vo ${classNameLower}Vo){
         logger.info(" ${classNameLower}/update 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}Vo));
         ${className} ${classNameLower} = new ${className}();
-        BeanUtils.copyProperties(${classNameLower}, ${classNameLower}Vo);
+        BeanUtils.copyProperties(${classNameLower}Vo, ${classNameLower});
         return new  ApiResult<>(${classNameLower}Service.update(${classNameLower}));
     }
 
@@ -71,7 +71,7 @@ public class ${className}Controller implements ${className}Api{
     public ApiResult<${className}> delete(@RequestBody ${className}Vo ${classNameLower}Vo){
         logger.info(" ${classNameLower}/delete 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}Vo));
         ${className} ${classNameLower} = new ${className}();
-        BeanUtils.copyProperties(${classNameLower}, ${classNameLower}Vo);
+        BeanUtils.copyProperties(${classNameLower}Vo, ${classNameLower});
         return new  ApiResult<>(${classNameLower}Service.delete(${classNameLower}));
     }
 
