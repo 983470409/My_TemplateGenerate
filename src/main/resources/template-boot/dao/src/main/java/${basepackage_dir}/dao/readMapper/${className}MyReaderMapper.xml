@@ -78,7 +78,7 @@
 		from
 		${table.sqlName}
 		<where>
-			<include refid="condition_sqlcondition_sql" />
+			<include refid="condition_sql" />
 		</where>
 	</select>
 </mapper>
