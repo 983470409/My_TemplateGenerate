@@ -1,7 +1,7 @@
 
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>
-package ${basepackage}.controller;
+package ${basepackage}.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,26 +24,15 @@ import java.util.List;
 /**
  <#include "/java_description.include">
  */
-@Api
-@Controller
-@RequestMapping("/api/${appModule}/${classNameLower}")
-public class ${className}Controller  {
+@Service
+public class ${className}Service {
     private static final Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 
     @Autowired
     private ${className}Facade ${classNameLower}Facade;
 
-    @ResponseBody
-    @RequestMapping("/add")
     public ApiResult add${className}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult apiResult = new ApiResult(0, "新增成功");
-        try{
-           ${classNameLower}Facade.save(${classNameLower}Vo);
-        }catch (Exception e){
-            logger.error("/add方法系统异常，请稍后重试", e);
-            apiResult = ApiResult.error("新增失败");
-        }
-        return apiResult;
+        return ${classNameLower}Facade.save(${classNameLower}Vo).getData();
     }
 
     @ResponseBody
@@ -77,7 +66,7 @@ public class ${className}Controller  {
     public ApiResult page(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
         ApiResult apiResult = new ApiResult();
         try{
-            PageBean<${className}> listPage = ${classNameLower}Facade.listPage(${classNameLower}Vo).getData();
+            PageBean<?> listPage = ${classNameLower}Facade.listPage(${classNameLower}Vo).getData();
             apiResult.setData(listPage);
         }catch (Exception e){
             logger.error("/page方法系统异常，请稍后重试,{}", e);

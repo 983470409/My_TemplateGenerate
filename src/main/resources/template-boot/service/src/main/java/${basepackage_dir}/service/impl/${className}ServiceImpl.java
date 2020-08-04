@@ -27,9 +27,9 @@ public class ${className}ServiceImpl implements ${className}Service {
 
 
 	@Autowired
-	${className}ReaderDao ${classNameLower}ReaderDao;
+	private ${className}ReaderDao ${classNameLower}ReaderDao;
 	@Autowired
-	${className}WriterDao ${classNameLower}WriterDao;
+	private ${className}WriterDao ${classNameLower}WriterDao;
 
 	/**
 	 * 获取数据
@@ -58,23 +58,12 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 */
 	@Override
 	public PageBean<${className}> listPage(${className}Vo ${classNameLower}Vo) {
-//		Map<String,Object>  paramMap = null;
-//		if (pageParam.getParamMap() == null) {
-//			 paramMap = new HashMap<>();
-//		}else {
-//			paramMap = pageParam.getParamMap();
-//		}
-//	   	// 根据页面传来的分页参数构造SQL分页参数
-//		paramMap.put("pageFirst", (pageParam.getPageNum() - 1) * pageParam.getNumPerPage());
-//		paramMap.put("pageSize", pageParam.getNumPerPage());
-//
-//	 	// 统计总记录数
-//		Long count = ${classNameLower}ReaderDao.listPageCount(paramMap);
-//		// 获取分页数据集
-//		List<${className}> list = ${classNameLower}ReaderDao.listPage(paramMap);
-//		// 构造分页对象
-//		return new PageBean<>(pageParam.getPageNum(), pageParam.getNumPerPage(), count.intValue(), list);
-		return null;
+		// 统计总记录数
+		Long count = ${classNameLower}ReaderDao.listPageCount(${classNameLower}Vo);
+		// 获取分页数据集
+		List<${className}> list = ${classNameLower}ReaderDao.listPage(${classNameLower}Vo);
+		// 构造分页对象
+		return new PageBean<>(${classNameLower}Vo.getPageIndex(), ${classNameLower}Vo.getPageSize(), count.intValue(), list);
 	}
 
 	/**

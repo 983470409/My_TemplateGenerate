@@ -7,7 +7,6 @@ import com.gzhc365.${deptFlag}.common.PageBean;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.gzhc365.cloud.commons.api.ApiParam;
 import com.gzhc365.cloud.commons.api.ApiResult;
-import com.gzhc365.mid.customerplatform.entity.User;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -7,6 +7,21 @@
 <#macro mapperEl value>${r"#{"}${value}}</#macro>
 <#macro namespace>${className}.</#macro>
 <mapper namespace="${basepackage}.dao.write.${className}WriterDao">
+	<sql id="condition_sql">
+		<#list table.columns as column>
+		<#if column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
+			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />
+		</if>
+		</#if>
+		<#if !column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null">
+			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}" />
+		</if>
+		</#if>
+		</#list>
+	</sql>
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from ${table.sqlName}
         where id = <@mapperEl "id,jdbcType=BIGINT"/>
@@ -14,19 +29,9 @@
 
 	<delete id="deleteSelective" parameterType="${basepackage}.entity.${className}">
 		delete from ${table.sqlName}
-		where 1=1 and id = <@mapperEl "id,jdbcType=BIGINT"/>
-		<#list table.columns as column>
-		<#if column.isStringColumn>
-		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
-			and <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}"/>
-		</if>
-		</#if>
-		<#if !column.isStringColumn>
-		<if test="${column.columnNameFirstLower} != null">
-			and <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}"/>
-		</if>
-		</#if>
-		</#list>
+		<where>
+			<include refid="condition_sql" />
+		</where>
 	</delete>
 
 	<insert id="insertSelective" parameterType="${basepackage}.entity.${className}">
