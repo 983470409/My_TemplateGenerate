@@ -64,7 +64,7 @@
 
 	<select id="listPage" parameterType="${basepackage}.vo.${className}Vo" resultMap="BaseResultMap">
 		select
-		<include refid="Base_Column_List" />
+			<include refid="Base_Column_List" />
 		from
 		${table.sqlName}
 		<where>

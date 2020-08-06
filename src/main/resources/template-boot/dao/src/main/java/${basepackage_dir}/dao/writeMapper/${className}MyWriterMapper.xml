@@ -22,6 +22,12 @@
 		</#list>
 	</sql>
 
+	<sql id="Base_Column_List">
+		<#list table.columns as column>
+			${column.sqlName}<#if column_has_next>,</#if>
+		</#list>
+	</sql>
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from ${table.sqlName}
         where id = <@mapperEl "id,jdbcType=BIGINT"/>
@@ -84,6 +90,20 @@
 		</set>
 		where id = <@mapperEl "id,jdbcType=BIGINT"/>
 	</update>
+
+	<insert id="batchInsert" parameterType="java.util.List">
+		insert into  ${table.sqlName}  ( <include refid="Base_Column_List" /> )
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+
+			(<#list table.columns as column>
+				<#if column.sqlName != "id">
+					<@mapperEl "item."+column.columnNameFirstLower />
+				</#if>
+			</#list>)
+
+		</foreach>
+	</insert>
 
 </mapper>
 

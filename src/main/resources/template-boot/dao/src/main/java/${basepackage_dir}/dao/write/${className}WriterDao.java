@@ -40,5 +40,12 @@ public interface ${className}WriterDao {
      */
     int updateByPrimaryKeySelective( ${className} t);
 
+        /**
+         * 批量插入多个
+         * @param serviceJudgeVoList
+         * @return
+         */
+        int batchInsert(List<ServiceJudgeVo> serviceJudgeVoList);
+
 
 }

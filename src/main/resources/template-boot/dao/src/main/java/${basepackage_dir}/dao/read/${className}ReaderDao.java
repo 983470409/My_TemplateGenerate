@@ -48,4 +48,10 @@ public interface ${className}ReaderDao {
      */
     List<${className}> listPage(${className}Vo t);
 
+    /**
+     * 批量插入多个
+     * @param t
+     * @return
+     */
+    int batchInsert(List<${className}Vo> t);
 }
