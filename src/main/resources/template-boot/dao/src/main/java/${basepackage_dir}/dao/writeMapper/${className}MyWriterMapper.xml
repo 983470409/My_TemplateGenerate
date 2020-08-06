@@ -98,7 +98,7 @@
 
 			(<#list table.columns as column>
 				<#if column.sqlName != "id">
-					<@mapperEl "item."+column.columnNameFirstLower />
+					<@mapperEl "item."+column.columnNameFirstLower />,
 				</#if>
 			</#list>)
 
