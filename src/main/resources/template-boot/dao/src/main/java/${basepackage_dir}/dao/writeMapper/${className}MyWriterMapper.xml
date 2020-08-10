@@ -40,7 +40,7 @@
 		</where>
 	</delete>
 
-	<insert id="insertSelective" parameterType="${basepackage}.entity.${className}">
+	<insert id="insertSelective" parameterType="${basepackage}.entity.${className}" useGeneratedKeys="true" keyProperty="id">
 		insert into ${table.sqlName}
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<#list table.columns as column>

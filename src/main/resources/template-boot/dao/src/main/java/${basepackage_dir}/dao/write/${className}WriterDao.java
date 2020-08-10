@@ -5,7 +5,7 @@
 package ${basepackage}.dao.write;
 
 import ${basepackage}.entity.${className};
-
+import java.util.List;
 
 /**
  <#include "/java_description.include">
