@@ -43,7 +43,7 @@
 		<#list table.columns as column>
 		<#if column.isStringColumn>
 		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
-			AND ${column.sqlName} CONCAT('%', <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}"/> ,'%')
+			AND ${column.sqlName} like CONCAT('%', <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}"/> ,'%')
 		</if>
 		</#if>
 		<#if !column.isStringColumn>
