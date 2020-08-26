@@ -134,7 +134,7 @@ public class ${className}Dao {
 		private static final String BASE =	"<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>";
 		private static final String ADD = "insert into ${table.sqlName} (<#list table.columns as column><#if column.sqlName != "id">${column.sqlName}<#if column_has_next>,</#if></#if></#list>)"
 				+ "values (<#list table.columns as column><#if column.sqlName != "id">:${column.columnNameFirstLower}<#if column_has_next>,</#if></#if></#list>)";
-		private static final String UPDATE= "UPDATE ${table.sqlName}"
+		private static final String UPDATE= "UPDATE ${table.sqlName} set "
 				+"<#list table.columns as column><#if column.sqlName != "id">${column.sqlName}=ifnull(:${column.columnNameFirstLower},${column.sqlName})<#if column_has_next>,</#if></#if></#list>"
 				+"WHERE id = :id";
 		private static final String PAGING= "select " + BASE + " from ${table.sqlName} where 1 = 1";
