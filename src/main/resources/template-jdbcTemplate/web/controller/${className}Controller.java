@@ -31,102 +31,44 @@ public class ${className}Controller  {
     private static final Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 
     @Autowired
-    private ${className}Facade ${classNameLower}Facade;
+    private ${className}Service ${classNameLower}Service;
 
-    @ResponseBody
-    @RequestMapping("/add")
-    public ApiResult add${className}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult apiResult = new ApiResult(0, "新增成功");
-        try{
-           ${classNameLower}Facade.save(${classNameLower}Vo);
-        }catch (Exception e){
-            logger.error("/add方法系统异常，请稍后重试", e);
-            apiResult = ApiResult.error("新增失败");
-        }
-        return apiResult;
+
+    @RequestMapping(value = "/add",method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation(value = "新增${className}",response = ${className}.class)
+    public void add${className}(HttpServletRequest request, HttpServletResponse response,  @RequestBody ${className} ${classNameLower}) {
+        Map<String, Object> resultMap = threadWarningService.add(${classNameLower}, getHcContext(request));
+        this.sendData(response,resultMap );
     }
 
-    @ResponseBody
-    @RequestMapping("/update")
-    public ApiResult update${className}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult apiResult = new ApiResult(0, "更新成功");
-        try{
-            ${classNameLower}Facade.update(${classNameLower}Vo);
-        }catch (Exception e){
-            logger.error("/update方法系统异常，请稍后重试", e);
-            apiResult = ApiResult.error("更新失败");
-        }
-        return apiResult;
+    @RequestMapping(value = "/update",method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation(value = "更新${className}",response = String.class)
+    public void update${className}(HttpServletRequest request, HttpServletResponse response, @RequestBody ${className} ${classNameLower}) {
+        Map<String, Object> resultMap = ${classNameLower}Service.update(${classNameLower}, getHcContext(request));
+        this.sendData(response,resultMap );
     }
 
-    @ResponseBody
-    @RequestMapping("/delete")
-    public ApiResult delete${className}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult apiResult = new ApiResult(0, "删除成功");
-        try{
-            ${classNameLower}Facade.delete(${classNameLower}Vo);
-        }catch (Exception e){
-            logger.error("/delete方法系统异常，请稍后重试:{}", e);
-            apiResult = ApiResult.error("删除失败");
-        }
-        return apiResult;
+    @RequestMapping(value = "/delete",method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation(value = "删除${className}",response = String.class)
+    public void delete${className}(HttpServletRequest request, HttpServletResponse response, @RequestParam Integer id) {
+        Map<String, Object> resultMap = ${classNameLower}Service.delete(id, getHcContext(request));
+        this.sendData(response,resultMap );
     }
 
-    @ResponseBody
-    @RequestMapping("/page")
-    public ApiResult page(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult apiResult = new ApiResult();
-        try{
-            PageBean<${className}> listPage = ${classNameLower}Facade.listPage(${classNameLower}Vo).getData();
-            apiResult.setData(listPage);
-        }catch (Exception e){
-            logger.error("/page方法系统异常，请稍后重试,{}", e);
-            apiResult = ApiResult.error("分页失败");
-        }
-        return apiResult;
+    @RequestMapping(value = "/getbyid",method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation(value = "根据id查询${className}信息",response = ${className}.class)
+    public void getById(HttpServletRequest request, HttpServletResponse response, @RequestParam Integer id) {
+        ${className} ${classNameLower} = ${classNameLower}Service.getById(id, getHcContext(request));
+        this.sendSuccessData(response, ${classNameLower} );
+    }
+
+    @RequestMapping(value = "/findall",method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation(value = "获取${className}列表",response = ${className}.class)
+    public void findAll(HttpServletRequest request, HttpServletResponse response) {
+        List<${className}> ${classNameLower}List = ${classNameLower}Service.findAll(getHcContext(request));
+        this.sendSuccessData(response, ${classNameLower}List);
     }
 
 
-    @ResponseBody
-    @RequestMapping("/get${classNameLower}s")
-    public ApiResult ${classNameLower}s(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult apiResult = new ApiResult();
-        try{
-            List<${className}> ${classNameLower}s = ${classNameLower}Facade.get${className}s(${classNameLower}Vo).getData();
-            apiResult.setData(${classNameLower}s);
-        }catch (Exception e){
-            logger.error("/get${classNameLower}s:方法系统异常，请稍后重试,{}", e);
-            apiResult = ApiResult.error("获取数据失败");
-        }
-        return apiResult;
-    }
-
-    @ResponseBody
-    @RequestMapping("/get${classNameLower}")
-    public ApiResult ${classNameLower}(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        ApiResult apiResult = new ApiResult();
-        try{
-            ${className} ${classNameLower} = ${classNameLower}Facade.get${className}(${classNameLower}Vo).getData();
-            apiResult.setData(${classNameLower});
-        }catch (Exception e){
-            logger.error("/get${classNameLower}方法系统异常，请稍后重试,{}", e);
-            apiResult = ApiResult.error("获取数据失败");
-        }
-        return apiResult;
-    }
-
-    @ResponseBody
-    @RequestMapping("/get${classNameLower}byid")
-    public ApiResult ${classNameLower}(HttpServletRequest request, HttpServletResponse response, Long id) {
-        ApiResult apiResult = new ApiResult();
-        try{
-            ${className} ${classNameLower} = ${classNameLower}Facade.get${className}ById(id).getData();
-            apiResult.setData(${classNameLower});
-        }catch (Exception e){
-            logger.error("/get${classNameLower}byid:方法系统异常，请稍后重试,{}", e);
-            apiResult = ApiResult.error("获取数据失败");
-        }
-        return apiResult;
-    }
 
 }

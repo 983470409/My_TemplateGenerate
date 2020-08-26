@@ -92,12 +92,12 @@ public class ${className}Dao {
 		<#if column.sqlName != "id">
 		<#if column.isStringColumn>
 		if (StringUtils.isNotBlank(${classNameLower}Vo.get${column.columnName}())){
-			builder.append(" and ${column.sqlName} = ${column.columnNameFirstLower} ");
+			builder.append(" and ${column.sqlName} = :${column.columnNameFirstLower} ");
 		}
 		</#if>
 		<#if !column.isStringColumn>
 		if (${classNameLower}Vo.get${column.columnName}() != null){
-			builder.append(" and ${column.sqlName} = ${column.columnNameFirstLower} ");
+			builder.append(" and ${column.sqlName} = :${column.columnNameFirstLower} ");
 		}
 		</#if>
 		</#if>
@@ -131,7 +131,7 @@ public class ${className}Dao {
 
 
 	private static final class Sql{
-		private static final String BASE =	"<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>";
+		private static final String BASE =	"<#list table.columns as column>${column.sqlName} as ${column.columnNameFirstLower}<#if column_has_next>,</#if></#list>";
 		private static final String ADD = "insert into ${table.sqlName} (<#list table.columns as column><#if column.sqlName != "id">${column.sqlName}<#if column_has_next>,</#if></#if></#list>)"
 				+ "values (<#list table.columns as column><#if column.sqlName != "id">:${column.columnNameFirstLower}<#if column_has_next>,</#if></#if></#list>)";
 		private static final String UPDATE= "UPDATE ${table.sqlName}"
