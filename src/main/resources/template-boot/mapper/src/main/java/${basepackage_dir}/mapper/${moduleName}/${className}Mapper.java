@@ -47,7 +47,7 @@ public interface ${className}Mapper {
      * @param record
      * @return
      */
-    ${className} get${className}By(${className} record);
+    ${className} getBy(${className} record);
 
     /**
      * 根据id删除数据
@@ -58,7 +58,7 @@ public interface ${className}Mapper {
 
     /**
      * 删除数据
-     * @param id
+     * @param record
      * @return
      */
     int deleteSelective(${className} record);

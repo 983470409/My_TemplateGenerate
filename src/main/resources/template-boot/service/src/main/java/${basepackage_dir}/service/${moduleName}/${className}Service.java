@@ -6,6 +6,7 @@ package ${basepackage}.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
+import com.mnt.sio.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +19,12 @@ import ${basepackage}.mapper.${moduleName}.${className}Mapper;
 import java.util.Date;
 import java.util.List;
 
-<#include "/java_imports.include">
-
 /**
  <#include "/java_description.include">
  */
 @Slf4j
 @Service
-public class ${className}ServiceImpl {
+public class ${className}Service {
 
 	@Autowired
 	private ${className}Mapper ${classNameLower}Mapper;
@@ -45,87 +44,114 @@ public class ${className}ServiceImpl {
 		${classNameLower}.setCreateTime(now);
 		${classNameLower}.setUpdateTime(now);
 
-		${classNameLower}Mapper.insert(${classNameLower});
+		${classNameLower}Mapper.insertSelective(${classNameLower});
 
-		return TransferUtil.transfer(${classNameLower}, DemoDto.class);
+		return TransferUtil.transfer(${classNameLower}, ${className}Dto.class);
 	}
 
-	public DemoDto getById(String id) {
+	/**
+	 * 根据主键id获得数据
+	 * @param id
+	 * @return
+	 */
+	public ${className}Dto getById(String id) {
 
-		Demo demo = demoMapper.selectByPrimaryKey(id);
+		${className} ${classNameLower} = ${classNameLower}Mapper.selectByPrimaryKey(id);
 
-		return TransferUtil.transfer(demo, DemoDto.class);
+		return TransferUtil.transfer(${classNameLower}, ${className}Dto.class);
 	}
 
-	public DemoDto getDemoBy(DemoDto demoDto) {
+	/**
+	 * 条件获得单个数据
+	 * @param ${classNameLower}Dto
+	 * @return
+	 */
+	public ${className}Dto get${className}By(${className}Dto ${classNameLower}Dto) {
 
-		Demo demo = TransferUtil.transfer(demoDto, Demo.class);
-		Demo result = demoMapper.getDemoBy(demo);
+		${className} ${classNameLower} = TransferUtil.transfer(${classNameLower}Dto, ${className}.class);
+		${className} result = ${classNameLower}Mapper.getBy(${classNameLower});
 
-		return TransferUtil.transfer(result, DemoDto.class);
+		return TransferUtil.transfer(result, ${className}Dto.class);
 	}
 
+	/**
+	 * 根据id删除数据
+	 * @param id
+	 * @return
+	 */
 	public void deleteById(String id) {
-		demoMapper.deleteByPrimaryKey(id);
+		${classNameLower}Mapper.deleteByPrimaryKey(id);
 	}
 
-	public void deleteBy(DemoDto demoDto) {
-		Demo demo = TransferUtil.transfer(demoDto, Demo.class);
-		demoMapper.deleteSelective(demo);
+	/**
+	 * 条件删除数据
+	 * @param ${classNameLower}Dto
+	 * @return
+	 */
+	public void deleteBy(${className}Dto ${classNameLower}Dto) {
+		${className} ${classNameLower} = TransferUtil.transfer(${classNameLower}Dto, ${className}.class);
+		${classNameLower}Mapper.deleteSelective(${classNameLower});
 	}
 
+	/**
+	 * 根据id列表量删除
+	 * @param idList
+	 * @return
+	 */
 	public void batchDelete(List<String> idList) {
-		demoMapper.batchDelete(idList);
+		${classNameLower}Mapper.batchDelete(idList);
 	}
 
-	public DemoDto create(DemoDto demoDto) {
+	/**
+	 * 更新
+	 * @param ${classNameLower}Dto
+	 * @return
+	 */
+	public ${className}Dto update(${className}Dto ${classNameLower}Dto) {
 
-		Demo demo = TransferUtil.transfer(demoDto, Demo.class);
-		demo.setId(GuidUtil.guid());
+		${className} ${classNameLower} = TransferUtil.transfer(${classNameLower}Dto, ${className}.class);
+		${classNameLower}.setUpdateTime(new Date());
+		${classNameLower}Mapper.updateByPrimaryKeySelective(${classNameLower});
 
-		Date now = new Date();
-
-		demo.setCreateTime(now);
-		demo.setUpdateTime(now);
-
-		demoMapper.insert(demo);
-
-		return TransferUtil.transfer(demo, DemoDto.class);
+		return TransferUtil.transfer(${classNameLower}, ${className}Dto.class);
 	}
 
-	public DemoDto update(DemoDto demoDto) {
+	/**
+	 * 批量新增
+	 * @param ${classNameLower}DtoList
+	 * @return
+	 */
+	public void batchCreate(List<${className}Dto> ${classNameLower}DtoList) {
 
-		Demo demo = TransferUtil.transfer(demoDto, Demo.class);
-		demo.setUpdateTime(new Date());
-		demoMapper.updateByPrimaryKeySelective(demo);
-
-		return TransferUtil.transfer(demo, DemoDto.class);
-	}
-
-	public void batchCreate(List<DemoDto> demoDtoList) {
-
-		List<Demo> demoList = TransferUtil.transfer(demoDtoList, Demo.class);
-		for (Demo demo : demoList) {
-			demo.setId(GuidUtil.guid());
+		List<${className}> ${classNameLower}List = TransferUtil.transfer(${classNameLower}DtoList, ${className}.class);
+		for (${className} ${classNameLower} : ${classNameLower}List) {
+			${classNameLower}.setId(GuidUtil.guid());
 			Date now = new Date();
-			demo.setCreateTime(now);
-			demo.setUpdateTime(now);
+			${classNameLower}.setCreateTime(now);
+			${classNameLower}.setUpdateTime(now);
 		}
-		demoMapper.batchInsert(demoList);
+		${classNameLower}Mapper.batchInsert(${classNameLower}List);
 	}
 
-	public List<DemoDto> list(int pageIndex, int pageSize, DemoDto demoDto) {
+	/**
+	 * 分页
+	 * @param pageIndex
+	 * @param pageSize
+	 * @param ${classNameLower}Dto
+	 * @return
+	 */
+	public List<${className}Dto> list(int pageIndex, int pageSize, ${className}Dto ${classNameLower}Dto) {
 
 		PagingUtil.reset();
 
-		Demo demo = TransferUtil.transfer(demoDto, Demo.class);
-		Page<Demo> page = PageHelper.startPage(pageIndex, pageSize);
-		List<Demo> resultList = demoMapper.list(demo);
+		${className} ${classNameLower} = TransferUtil.transfer(${classNameLower}Dto, ${className}.class);
+		Page<${className}> page = PageHelper.startPage(pageIndex, pageSize);
+		List<${className}> resultList = ${classNameLower}Mapper.list(${classNameLower});
 
 		PagingUtil.set(page, resultList.size());
 
-		log.info("service.demo.list: pageIndex: " + pageIndex + ", pageSize"  + pageSize + ", demoDto" + JsonUtil.asString(demoDto));
+		log.info("service.${classNameLower}.list: pageIndex: " + pageIndex + ", pageSize"  + pageSize + ", ${classNameLower}Dto" + JsonUtil.asString(${classNameLower}Dto));
 
-		return TransferUtil.transfer(resultList, DemoDto.class);
+		return TransferUtil.transfer(resultList, ${className}Dto.class);
 	}
 }

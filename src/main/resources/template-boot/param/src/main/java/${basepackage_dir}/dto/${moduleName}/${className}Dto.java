@@ -13,13 +13,10 @@ import java.util.Date;
 @Data
 @ApiModel(value = "${className}Dto", description = "${className}业务传输对象")
 public class ${className}Dto {
-    //TODO 添加序列化Id
 
     <#list table.columns as column>
     @ApiModelProperty(value = "${column.remarks}")
     private ${column.simpleJavaType} ${column.columnNameLower};  
-    </#list>  
- 
-<@generateJavaColumns/> 
+    </#list>
 
 }

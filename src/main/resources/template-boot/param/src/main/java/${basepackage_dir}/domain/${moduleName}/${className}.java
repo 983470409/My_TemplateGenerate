@@ -14,13 +14,10 @@ import java.util.Date;
 @Data
 @ApiModel(value = "${className}", description = "${className}实体对象")
 public class ${className} implements Serializable {
-    //TODO 添加序列化Id
 
     <#list table.columns as column>
     @ApiModelProperty(value = "${column.remarks}")
     private ${column.simpleJavaType} ${column.columnNameLower};  
-    </#list>  
- 
-<@generateJavaColumns/> 
+    </#list>
 
 }
