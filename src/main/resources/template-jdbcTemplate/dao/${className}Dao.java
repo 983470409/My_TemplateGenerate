@@ -116,12 +116,12 @@ public class ${className}Dao {
 		<#if column.sqlName != "id">
 		<#if column.isStringColumn>
 		if (StringUtils.isNotBlank(${classNameLower}Vo.get${column.columnName}())){
-			builder.append(" and ${column.sqlName} = ${:column.columnNameFirstLower} ");
+			builder.append(" and ${column.sqlName} = :${column.columnNameFirstLower} ");
 		}
 		</#if>
 		<#if !column.isStringColumn>
 		if (${classNameLower}Vo.get${column.columnName}() != null){
-			builder.append(" and ${column.sqlName} = ${:column.columnNameFirstLower} ");
+			builder.append(" and ${column.sqlName} = :${column.columnNameFirstLower} ");
 		}
 		</#if>
 		</#if>

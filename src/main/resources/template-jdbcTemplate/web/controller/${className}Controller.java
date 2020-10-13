@@ -20,6 +20,7 @@ import io.swagger.annotations.Api;
 import com.gzhc365.${deptFlag}.common.PageBean;
 import com.gzhc365.cloud.commons.api.ApiResult;
 import java.util.List;
+import java.util.Map;
 
 /**
  <#include "/java_description.include">
@@ -69,6 +70,18 @@ public class ${className}Controller  {
         this.sendSuccessData(response, ${classNameLower}List);
     }
 
-
+    /**
+     * 分页查询
+     * @param warningThresholdHisHealthVo
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "/paging",method = RequestMethod.POST)
+    @ApiOperation(value = "分页查询",response = Map.class)
+    public void paging(@ApiParam(value = "必填，条件查询对象")  @RequestBody ${className}Vo ${classNameLower}Vo,
+        HttpServletRequest request, HttpServletResponse response){
+        Map resultMap = ${classNameLower}Service.paging(${classNameLower}Vo, getHcContext(request));
+        this.sendSuccessData(response,resultMap );
+    }
 
 }

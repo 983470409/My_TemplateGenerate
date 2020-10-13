@@ -20,8 +20,29 @@ import java.util.List;
 public class ${className}Service {
     private static final Logger logger = LoggerFactory.getLogger(${className}Service.class);
 
-    @Autowired
+    @Reference(retries = -1,timeout = 5000)
     private ${className}Facade ${classNameLower}Facade;
+
+    /**
+     * 分页查询菜单表
+     * @param
+     * @param hcContext
+     * @return
+     */
+    public Map paging(${className}Vo ${classNameLower}Vo, HcContext hcContext){
+        //判断页码是否为空或者小于1
+        if (${classNameLower}Vo.getPageIndex()==null || ${classNameLower}Vo.getPageIndex()<1){
+        //将页码设为1
+            ${classNameLower}Vo.setPageIndex(1);
+        }
+        //判断页面显示的大小是否为空或者小于1
+        if (${classNameLower}Vo.getPageSize()==null || ${classNameLower}Vo.getPageSize()<1){
+        //将页面显示的大小设为5
+             ${classNameLower}Vo.setPageSize(5);
+        }
+        return ${classNameLower}Facade.page(${classNameLower}Vo);
+    }
+
 
     /**
      * 获得所有数据
