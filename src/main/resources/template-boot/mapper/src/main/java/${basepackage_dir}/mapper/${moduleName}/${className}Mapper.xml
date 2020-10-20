@@ -41,9 +41,9 @@
 
 	<sql id="condition_sql_like">
 		<#list table.columns as column>
-		<#if column.isStringColumn>
+		<#if column.isStringColumn >
 		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
-			AND ${column.sqlName} CONCAT('%', <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}"/> ,'%')
+			AND ${column.sqlName} LIKE CONCAT (CONCAT('%', <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}"/> ,'%'))
 		</if>
 		</#if>
 		<#if !column.isStringColumn>
@@ -116,13 +116,24 @@
 		</where>
 	</delete>
 
-	<insert id="batchDelete" parameterType="java.util.List">
+	<delete  id="batchDelete" parameterType="java.util.List">
 		delete from ${table.sqlName} where id in
 		<foreach collection="list" item="id" open="(" separator="," close=")">
 			id
 		</foreach>
-	</insert>
+	</delete>
 
+	<select id="selectByPrimaryKeys" parameterType="java.util.List" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from
+		${table.sqlName}
+		where id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			id
+		</foreach>
+
+</select>
 	<insert id="insertSelective" parameterType="${basepackage}.domain.${moduleName}.${className}">
 		insert into ${table.sqlName}
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -174,6 +185,7 @@
 		where id = <@mapperEl "id,jdbcType=VARCHAR"/>
 	</update>
 
+
 	<update id="updateByPrimaryKey" parameterType="${basepackage}.domain.${moduleName}.${className}">
 		update ${table.sqlName}
 		set
@@ -188,9 +200,7 @@
 		values
 		<foreach collection="list" item="item" index="index" separator=",">
 			(<#list table.columns as column>
-				<#if column.sqlName != "id">
-					<@mapperEl "item."+column.columnNameFirstLower />
-				</#if>
+				<@mapperEl "item."+column.columnNameFirstLower />,
 			</#list>)
 		</foreach>
 	</insert>

@@ -133,6 +133,29 @@ public class ${className}Service {
 		${classNameLower}Mapper.batchInsert(${classNameLower}List);
 	}
 
+	public List<${className}Dto> getBy(${className}Dto ${classNameLower}Dto) {
+
+		${className} ${classNameLower} = TransferUtil.transfer(${classNameLower}Dto, ${className}.class);
+		List<${className}> resultList = ${classNameLower}Mapper.list(${classNameLower});
+
+		return TransferUtil.transfer(resultList, ${className}Dto.class);
+	}
+
+	/**
+	 * 根据主键id列表获得数据
+	 * @param ids
+	 * @return
+	 */
+	public List<${className}Dto> getByIds(List<String> ids) {
+
+		if (CollectionUtils.isEmpty(ids)){
+			return new ArrayList<>();
+		}
+		List<${className}> resultList = ${classNameLower}Mapper.selectByPrimaryKeys(ids);
+
+		return TransferUtil.transfer(resultList, ${className}Dto.class);
+	}
+
 	/**
 	 * 分页
 	 * @param pageIndex

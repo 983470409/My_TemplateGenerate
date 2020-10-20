@@ -21,6 +21,13 @@ public interface ${className}Mapper {
      */
     ${className} selectByPrimaryKey(String id);
 
+    /**
+     * 根据主键id列表获得数据
+     * @param ids
+     * @return
+     */
+    List<${className}> selectByPrimaryKeys(List<String> ids);
+
 //    /**
 //     * 获得分页数据
 //     * @param record
