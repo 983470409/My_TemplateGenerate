@@ -10,12 +10,14 @@ import com.mnt.sio.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.util.CollectionUtils;
 import tech.jianxin.timeb.util.GuidUtil;
 import tech.jianxin.timeb.util.TransferUtil;
 import tech.jianxin.timeb.vo.paging.PagingUtil;
 import ${basepackage}.dto.${moduleName}.${className}Dto;
 import ${basepackage}.domain.${moduleName}.${className};
 import ${basepackage}.mapper.${moduleName}.${className}Mapper;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -148,9 +150,7 @@ public class ${className}Service {
 	 */
 	public List<${className}Dto> getByIds(List<String> ids) {
 
-		if (CollectionUtils.isEmpty(ids)){
-			return new ArrayList<>();
-		}
+		if (CollectionUtils.isEmpty(ids)) return new ArrayList<>();
 		List<${className}> resultList = ${classNameLower}Mapper.selectByPrimaryKeys(ids);
 
 		return TransferUtil.transfer(resultList, ${className}Dto.class);
