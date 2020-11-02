@@ -26,7 +26,7 @@
 
 	<sql id="condition_sql">
 		<#list table.columns as column>
-		<#if column.isStringColumn>
+		<#if column.isStringColumn && column.sqlName != "id">
 		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
 			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />
 		</if>
@@ -41,7 +41,7 @@
 
 	<sql id="condition_sql_like">
 		<#list table.columns as column>
-		<#if column.isStringColumn >
+		<#if column.isStringColumn && column.sqlName != "id">
 		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
 			AND ${column.sqlName} LIKE CONCAT (CONCAT('%', <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}"/> ,'%'))
 		</if>
@@ -170,7 +170,7 @@
 		update ${table.sqlName}
 		<set>
 			<#list table.columns as column>
-			<#if column.isStringColumn>
+			<#if column.isStringColumn && column.sqlName != "id">
 			<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
 				${column.sqlName} =  <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />,
 			</if>
@@ -190,7 +190,9 @@
 		update ${table.sqlName}
 		set
 		<#list table.columns as column>
+		<#if column.sqlName != "id">
 			${column.sqlName} =  <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />,
+		</#if>
 		</#list>
 		where id = <@mapperEl "id,jdbcType=VARCHAR"/>
 	</update>
