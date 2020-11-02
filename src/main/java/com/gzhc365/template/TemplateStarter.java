@@ -26,7 +26,7 @@ public class TemplateStarter {
         // 需要生成的表 多個用,分開 如 "t_health_inquiry","t_health_inquiry_item"
 //        g.generateByTable("t_logpaltform_service_type","t_logpaltform_judge_jgresult","t_logpaltform_service_judge","t_logpaltform_service_type","t_logpaltform_service_uri","t_logpaltform_uri","t_logpaltform_review");
         //g.generateByTable("tag","task_info","task_prop","task_set","task_set_rel","task_set_tag_rel","classification","info_set_classification_rel","expert_info");
-        g.generateByTable("network_article_info");
+        g.generateByTable("user_feedback");
     }
 
 
