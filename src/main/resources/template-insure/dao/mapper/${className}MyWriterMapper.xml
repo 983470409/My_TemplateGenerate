@@ -1,0 +1,109 @@
+<#include "/macro.include"/>
+<#assign className = table.className>
+<#assign classNameFirstLower = table.classNameFirstLower>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro namespace>${className}.</#macro>
+<mapper namespace="${basepackage}.dao.${className}WriterDao">
+	<sql id="condition_sql">
+		<#list table.columns as column>
+		<#if column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
+			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />
+		</if>
+		</#if>
+		<#if !column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null">
+			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}" />
+		</if>
+		</#if>
+		</#list>
+	</sql>
+
+	<sql id="Base_Column_List">
+		<#list table.columns as column>
+			${column.sqlName}<#if column_has_next>,</#if>
+		</#list>
+	</sql>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from ${table.sqlName}
+        where id = <@mapperEl "id,jdbcType=BIGINT"/>
+	</delete>
+
+	<delete id="deleteSelective" parameterType="${basepackage}.po.${className}">
+		delete from ${table.sqlName}
+		<where>
+			<include refid="condition_sql" />
+		</where>
+	</delete>
+
+	<insert id="insertSelective" parameterType="${basepackage}.po.${className}" useGeneratedKeys="true" keyProperty="id">
+		insert into ${table.sqlName}
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<#list table.columns as column>
+			<#if column.isStringColumn>
+			<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
+				 ${column.sqlName},
+			</if>
+			</#if>
+			<#if !column.isStringColumn>
+			<if test="${column.columnNameFirstLower} != null">
+				${column.sqlName},
+			</if>
+			</#if>
+			</#list>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<#list table.columns as column>
+			<#if column.isStringColumn>
+			<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !='' ">
+				<@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}"/>,
+			</if>
+			</#if>
+			<#if !column.isStringColumn>
+			<if test="${column.columnNameFirstLower} != null">
+				<@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}"/>,
+			</if>
+			</#if>
+			</#list>
+		</trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="${basepackage}.po.${className}">
+		update ${table.sqlName}
+		<set>
+			<#list table.columns as column>
+			<#if column.isStringColumn>
+			<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
+				${column.sqlName} =  <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />,
+			</if>
+			</#if>
+			<#if !column.isStringColumn>
+			<if test="${column.columnNameFirstLower} != null">
+				${column.sqlName} =  <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />,
+			</if>
+			</#if>
+			</#list>
+		</set>
+		where id = <@mapperEl "id,jdbcType=BIGINT"/>
+	</update>
+
+	<insert id="batchInsert" parameterType="java.util.List">
+		insert into  ${table.sqlName}  ( <include refid="Base_Column_List" /> )
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+
+			(<#list table.columns as column>
+				<#if column.sqlName != "id">
+					<@mapperEl "item."+column.columnNameFirstLower />,
+				</#if>
+			</#list>)
+
+		</foreach>
+	</insert>
+
+</mapper>
+
