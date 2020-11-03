@@ -21,13 +21,6 @@ public class TemplateStarter {
         g.getGenerator().addTemplateRootDir(ClassLoader.getSystemResource("template-insure").getPath());
         // 删除生成器的输出目录//
         g.deleteOutRootDir();
-        // 通过数据库表生成文件
-//        g.generateByAllTable();
-        // 需要生成的表 多個用,分開 如 "t_health_inquiry","t_health_inquiry_item"
-//        g.generateByTable("t_logpaltform_service_type","t_logpaltform_judge_jgresult","t_logpaltform_service_judge","t_logpaltform_service_type","t_logpaltform_service_uri","t_logpaltform_uri","t_logpaltform_review");
-//        g.generateByTable( "t_alarm_front_monitor_data","t_alarm_front_status","t_alarm_front_health_data","t_alarm_warning_threshold_his_health");
-//        g.generateByTable( "t_alarm_front_monitor_data","t_alarm_front_status","t_alarm_front_health_data","t_alarm_warning_threshold_his_health","t_alarm_exception_redisKey");
-//        g.generateByTable("t_uc_patients","t_uc_patients_tags","t_uc_doctor_user_relation");
         g.generateByTable("t_insurance_claim");
     }
 
