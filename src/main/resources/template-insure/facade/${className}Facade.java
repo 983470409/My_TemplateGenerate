@@ -48,19 +48,19 @@ public interface ${className}Facade{
      * @param ${classNameLower}QueryReq
      */
     @RequestMapping(value="${classNameLower}/get${className}s",  method = { RequestMethod.POST })
-    public List<${className}> get${className}s(@RequestBody ${className}QueryReq ${classNameLower}QueryReq);
+    List<${className}> get${className}s(@RequestBody ${className}QueryReq ${classNameLower}QueryReq);
 
     /**
      * 通过主键id查找数据
      * @param id
      */
     @RequestMapping(value="${classNameLower}/get${className}ById",  method = { RequestMethod.POST })
-    public ${className}Vo get${className}ById(@RequestParam("id") long id);
+    ${className}Vo get${className}ById(@RequestParam("id") long id);
 
     /**
      * 根据筛选条件查询数据
      * @param ${classNameLower}PagingQueryVo
      */
     @RequestMapping(value="${classNameLower}/listPage",  method = { RequestMethod.POST })
-    public PageBean<${className}Vo> listPage(@RequestBody ${className}PagingQueryVo ${classNameLower}PagingQueryVo);
+    PageBean<${className}Vo> listPage(@RequestBody ${className}PagingQueryVo ${classNameLower}PagingQueryVo);
 }
