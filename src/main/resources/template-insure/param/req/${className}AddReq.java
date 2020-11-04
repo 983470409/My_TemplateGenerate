@@ -16,6 +16,7 @@ import lombok.Data;
 /**
  <#include "/java_description.include">
  */
+@Data
 @ApiModel(value = "${className}AddReq", description = "新增${className}请求对象")
 public class ${className}AddReq  extends BaseReq{
     //TODO 添加序列化Id

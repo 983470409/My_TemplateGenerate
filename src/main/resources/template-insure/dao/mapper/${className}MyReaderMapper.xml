@@ -1,7 +1,9 @@
 <#include "/macro.include"/>
 <#assign className = table.className>
 <#assign classNameFirstLower = table.classNameFirstLower>
-<?xml version="1.0" encoding="UTF-8" ?>
+<#assign className = table.className>
+<#assign classNameLower = className?uncap_first>
+		<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <#macro mapperEl value>${r"#{"}${value}}</#macro>
@@ -62,7 +64,7 @@
 		where id = <@mapperEl "id,jdbcType=BIGINT"/>
 	</select>
 
-	<select id="listPage" parameterType="${basepackage}.vo.${className}Vo、" resultMap="BaseResultMap">
+	<select id="listPage" parameterType="${basepackage}.vo.${className}PagingQueryVo" resultMap="BaseResultMap">
 		select
 			<include refid="Base_Column_List" />
 		from
@@ -71,10 +73,10 @@
 			<include refid="condition_sql_like" />
 		</where>
       <![CDATA[ order by create_time desc]]>
-		limit <@mapperEl "pageFirst"/>,<@mapperEl "pageLast"/>
+		limit <@mapperEl "${classNameLower}PagingQueryVo.startIndex"/>,<@mapperEl "${classNameLower}PagingQueryVo.pageSize"/>
 	</select>
 
-	<select id="listPageCount" parameterType="${basepackage}.vo.${className}Vo"
+	<select id="listPageCount" parameterType="${basepackage}.vo.${className}PagingQueryVo"
 		resultType="long">
 		select count(1) from
 		${table.sqlName}
