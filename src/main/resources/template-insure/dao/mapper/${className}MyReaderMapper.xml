@@ -3,9 +3,8 @@
 <#assign classNameFirstLower = table.classNameFirstLower>
 <#assign className = table.className>
 <#assign classNameLower = className?uncap_first>
-		<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <#macro mapperEl value>${r"#{"}${value}}</#macro>
 <#macro namespace>${className}.</#macro>
 <mapper namespace="${basepackage}.dao.${className}ReaderDao">
@@ -72,8 +71,8 @@
 		<where>
 			<include refid="condition_sql_like" />
 		</where>
-      <![CDATA[ order by create_time desc]]>
-		limit <@mapperEl "${classNameLower}PagingQueryVo.startIndex"/>,<@mapperEl "${classNameLower}PagingQueryVo.pageSize"/>
+      <![CDATA[ order by create_time desc ]]>
+		limit <@mapperEl "startIndex"/>,<@mapperEl "pageSize"/>
 	</select>
 
 	<select id="listPageCount" parameterType="${basepackage}.vo.${className}PagingQueryVo"
