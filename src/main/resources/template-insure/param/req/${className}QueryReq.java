@@ -2,14 +2,13 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.vo;
 
-/**
- <#include "/java_model_imports.include">
- */
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import ${basepackage}.request.*;
 
 /**
  <#include "/java_description.include">
@@ -23,6 +22,5 @@ public class ${className}QueryReq extends BaseReq{
     @ApiModelProperty(value = "${column.remarks}")
     private ${column.simpleJavaType} ${column.columnNameLower};  
     </#list>  
-
 
 }

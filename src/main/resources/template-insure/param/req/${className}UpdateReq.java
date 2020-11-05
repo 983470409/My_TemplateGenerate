@@ -16,14 +16,12 @@ import lombok.Data;
  */
 @Data
 @ApiModel(value = "${className}UpdateReq", description = "更新${className}请求对象")
-public class ${className}UpdateReq  extends BaseReq{
+public class ${className}UpdateReq{
     //TODO 添加序列化Id
 
     <#list table.columns as column>
     @ApiModelProperty(value = "${column.remarks}")
     private ${column.simpleJavaType} ${column.columnNameLower};  
     </#list>  
-
-
 
 }
