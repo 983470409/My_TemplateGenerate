@@ -49,7 +49,9 @@ public class ${className}Service{
 	 * @return
 	 */
 	public ${className}Vo getById(long id) {
-		return ${classNameLower}ReaderDao.selectByPrimaryKey(id);
+		${className}Vo ${classNameLower}Vo = new ${className}Vo();
+		BeanUtils.copyProperties(${classNameLower}ReaderDao.selectByPrimaryKey(id),${classNameLower}Vo);
+		return ${classNameLower}Vo;
 	}
 
 

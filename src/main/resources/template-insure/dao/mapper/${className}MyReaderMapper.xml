@@ -38,6 +38,15 @@
 		</if>
 		</#if>
 		</#list>
+		<if test="startTime != null and endTime == null">
+			<![CDATA[ AND date_format(create_time, '%Y-%m-%d') >= <@mapperEl "startTime"/> ]]>
+		</if>
+		<if test="startTime == null and endTime != null">
+			<![CDATA[ AND date_format(create_time, '%Y-%m-%d') <= <@mapperEl "endTime"/>} ]]>
+		</if>
+		<if test="startTime != null and endTime != null">
+			<![CDATA[ AND date_format(create_time, '%Y-%m-%d') between <@mapperEl "startTime"/> and  <@mapperEl "endTime"/>]]>
+		</if>
 	</sql>
 
 	<sql id="condition_sql_like">
@@ -53,6 +62,15 @@
 		</if>
 		</#if>
 		</#list>
+		<if test="startTime != null and endTime == null">
+			<![CDATA[ AND date_format(create_time, '%Y-%m-%d') >= <@mapperEl "startTime"/> ]]>
+		</if>
+		<if test="startTime == null and endTime != null">
+			<![CDATA[ AND date_format(create_time, '%Y-%m-%d') <= <@mapperEl "endTime"/>} ]]>
+		</if>
+		<if test="startTime != null and endTime != null">
+			<![CDATA[ AND date_format(create_time, '%Y-%m-%d') between <@mapperEl "startTime"/> and  <@mapperEl "endTime"/>]]>
+		</if>
 	</sql>
 
 	<select id="selectByPrimaryKey" parameterType="long" resultMap="BaseResultMap">

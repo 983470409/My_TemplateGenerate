@@ -55,7 +55,7 @@ public class ${className}Controller implements ${className}Facade{
     @Override
     public void delete(@RequestBody ${className}DeleteReq ${classNameLower}DeleteReq){
         try{
-            ${classNameLower}Service.delete${className}(${classNameLower}DeleteReq.get${className}Id());
+            ${classNameLower}Service.delete${className}(${classNameLower}DeleteReq.getId());
         }catch (Exception e) {
             logger.error("删除${classNameLower}失败 ${classNameLower}Req = {}" ,JSON.toJSONString(${classNameLower}DeleteReq),e);
             throw new InsuranceProfileException("删除${classNameLower}异常 : " + e.getMessage());

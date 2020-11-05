@@ -18,7 +18,7 @@ public interface ${className}ReaderDao {
      * @param id
      * @return
      */
-    ${className}Vo selectByPrimaryKey(Long id);
+    ${className} selectByPrimaryKey(Long id);
 
     /**
      * 通过参数获得数据

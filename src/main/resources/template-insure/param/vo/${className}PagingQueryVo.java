@@ -29,8 +29,8 @@ public class ${className}PagingQueryVo extends PageVo{
     private ${column.simpleJavaType} ${column.columnNameLower};  
     </#list>
     @ApiModelProperty(value = "开始时间")
-    private Long startTime;
+    private Date startTime;
     @ApiModelProperty(value = "结束时间")
-    private Long endTime;
+    private Date endTime;
 
 }

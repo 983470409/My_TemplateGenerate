@@ -31,7 +31,7 @@ public class ${className}Controller extends BaseController{
     @Autowired
     private ${className}Facade ${classNameLower}Facade;
 
-    @RequestMapping(value = "/paging",method = { RequestMethod.POST })
+    @RequestMapping(value = "/paging",method = { RequestMethod.GET, RequestMethod.POST})
     @ApiOperation(value = "分页获取${className}",response = PageBean.class)
     public void paging(HttpServletRequest request, HttpServletResponse response, @RequestBody ${className}PagingQueryVo  ${classNameLower}pagingQueryVo){
         try{
@@ -44,7 +44,7 @@ public class ${className}Controller extends BaseController{
         }
     }
 
-    @RequestMapping(value = "/add",method = { RequestMethod.POST })
+    @RequestMapping(value = "/add",method = { RequestMethod.GET, RequestMethod.POST})
     @ApiOperation(value = "新增${classNameLower}",response = Long.class)
     public void paging(HttpServletRequest request, HttpServletResponse response, @RequestBody ${className}AddReq ${classNameLower}AddReq){
         try{
@@ -57,7 +57,7 @@ public class ${className}Controller extends BaseController{
         }
     }
 
-    @RequestMapping(value = "/update",method = { RequestMethod.POST })
+    @RequestMapping(value = "/update",method = { RequestMethod.GET, RequestMethod.POST })
     @ApiOperation(value = "编辑${classNameLower}")
     public void update(HttpServletRequest request, HttpServletResponse response, @RequestBody ${className}UpdateReq ${classNameLower}UpdateReq){
         try{
@@ -70,22 +70,22 @@ public class ${className}Controller extends BaseController{
         }
     }
 
-    @RequestMapping(value = "/query",method = { RequestMethod.GET })
+    @RequestMapping(value = "/query",method = { RequestMethod.GET, RequestMethod.POST })
     @ApiOperation(value = "查询${classNameLower}",response = PlatformProfileVo.class)
-    public void paging(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") Long id){
+    public void get${className}s(HttpServletRequest request, HttpServletResponse response, @RequestBody ${className}QueryReq ${classNameLower}QueryReq){
         try{
-            logger.info("查询${classNameLower} request = {} ", id);
-            ${className}Vo ${classNameLower}Vo = ${classNameLower}Facade.get${className}ById(id);
-            this.sendSuccessData(response, ${classNameLower}Vo);
+            logger.info("查询${classNameLower} request = {} ", JSON.toJSONString(${classNameLower}QueryReq));
+            List<${className}> ${classNameLower}VoList = ${classNameLower}Facade.get${className}s(${classNameLower}QueryReq);
+            this.sendSuccessData(response, ${classNameLower}VoList);
         }catch (Exception e){
-            logger.error("查询${classNameLower} request = {} ",JSON.toJSONString(id), e);
+            logger.error("查询${classNameLower} request = {} ",JSON.toJSONString(${classNameLower}QueryReq), e);
             this.sendFailData(response, "查询${classNameLower}异常");
         }
     }
 
-    @RequestMapping(value = "/del",method = { RequestMethod.GET })
+    @RequestMapping(value = "/del",method = { RequestMethod.GET, RequestMethod.POST})
     @ApiOperation(value = "删除${classNameLower}")
-    public void delete(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") ${className}DeleteReq ${classNameLower}DeleteReq){
+    public void delete(HttpServletRequest request, HttpServletResponse response, @RequestBody ${className}DeleteReq ${classNameLower}DeleteReq){
         try{
 
             logger.info("删除${classNameLower} request = {} ", JSON.toJSONString(${classNameLower}DeleteReq));
@@ -94,6 +94,19 @@ public class ${className}Controller extends BaseController{
         }catch (Exception e){
             logger.error("删除${classNameLower} request = {} ",JSON.toJSONString(${classNameLower}DeleteReq), e);
             this.sendFailData(response, "删除${classNameLower}异常");
+        }
+    }
+
+    @RequestMapping(value = "/getById",method = { RequestMethod.GET, RequestMethod.POST })
+    @ApiOperation(value = "查询${classNameLower}",response = PlatformProfileVo.class)
+    public void getById(HttpServletRequest request, HttpServletResponse response, Long id){
+        try{
+            logger.info("查询${classNameLower} request = {} ", id);
+            ${className}Vo ${classNameLower}Vo = ${classNameLower}Facade.get${className}ById(id);
+            this.sendSuccessData(response, ${classNameLower}Vo);
+        }catch (Exception e){
+            logger.error("查询${classNameLower} request = {} ",JSON.toJSONString(id), e);
+            this.sendFailData(response, "查询${classNameLower}异常");
         }
     }
 
