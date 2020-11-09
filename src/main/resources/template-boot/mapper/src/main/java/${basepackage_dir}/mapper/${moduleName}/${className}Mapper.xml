@@ -31,27 +31,39 @@
 			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />
 		</if>
 		</#if>
-		<#if !column.isStringColumn>
+		<#if !column.isStringColumn && column.sqlName != "create_time" && column.sqlName != "update_time">
 		<if test="${column.columnNameFirstLower} != null">
 			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}" />
 		</if>
 		</#if>
 		</#list>
+		<if test="startDate != null">
+			AND create_time <![CDATA[ >= ]]> <@mapperEl "startDate"/>
+		</if>
+		<if test="endDate != null">
+			AND create_time <![CDATA[ <= ]]> <@mapperEl "endDate"/>
+		</if>
 	</sql>
 
 	<sql id="condition_sql_like">
 		<#list table.columns as column>
 		<#if column.isStringColumn && column.sqlName != "id">
 		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
-			AND ${column.sqlName} LIKE CONCAT (CONCAT('%', <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}"/> ,'%'))
+			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}" />
 		</if>
 		</#if>
-		<#if !column.isStringColumn>
+		<#if !column.isStringColumn && column.sqlName != "create_time" && column.sqlName != "update_time">
 		<if test="${column.columnNameFirstLower} != null">
 			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}" />
 		</if>
 		</#if>
 		</#list>
+		<if test="startDate != null">
+			AND create_time <![CDATA[ >= ]]> <@mapperEl "startDate"/>
+		</if>
+		<if test="endDate != null">
+			AND create_time <![CDATA[ <= ]]> <@mapperEl "endDate"/>
+		</if>
 	</sql>
 
 	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -83,7 +95,7 @@
 		</where>
 	</select>-->
 
-	<select id="list" parameterType="${basepackage}.domain.${moduleName}.${className}" resultMap="BaseResultMap">
+	<select id="list" parameterType="${basepackage}.dto.${moduleName}.${className}Dto" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from
@@ -94,7 +106,7 @@
 		<![CDATA[ order by create_time desc]]>
 	</select>
 
-	<select id="getBy" parameterType="${basepackage}.domain.${moduleName}.${className}" resultMap="BaseResultMap">
+	<select id="getBy" parameterType="${basepackage}.dto.${moduleName}.${className}Dto" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from
@@ -109,7 +121,7 @@
         where id = <@mapperEl "id,jdbcType=VARCHAR"/>
 	</delete>
 
-	<delete id="deleteSelective" parameterType="${basepackage}.domain.${moduleName}.${className}">
+	<delete id="deleteSelective" parameterType="${basepackage}.dto.${moduleName}.${className}Dto">
 		delete from ${table.sqlName}
 		<where>
 			<include refid="condition_sql" />
@@ -119,7 +131,8 @@
 	<delete  id="batchDelete" parameterType="java.util.List">
 		delete from ${table.sqlName} where id in
 		<foreach collection="list" item="id" open="(" separator="," close=")">
-			id
+						<@mapperEl "id"/>
+
 		</foreach>
 	</delete>
 
@@ -130,7 +143,8 @@
 		${table.sqlName}
 		where id in
 		<foreach collection="list" item="id" open="(" separator="," close=")">
-			id
+						<@mapperEl "id"/>
+
 		</foreach>
 	</select>
 
@@ -191,7 +205,7 @@
 		set
 		<#list table.columns as column>
 		<#if column.sqlName != "id">
-			${column.sqlName} =  <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />,
+			${column.sqlName} =  <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" /><#if column_has_next>,</#if>
 		</#if>
 		</#list>
 		where id = <@mapperEl "id,jdbcType=VARCHAR"/>
@@ -202,7 +216,7 @@
 		values
 		<foreach collection="list" item="item" index="index" separator=",">
 			(<#list table.columns as column>
-				<@mapperEl "item."+column.columnNameFirstLower />,
+				<@mapperEl "item."+column.columnNameFirstLower /><#if column_has_next>,</#if>
 			</#list>)
 		</foreach>
 	</insert>

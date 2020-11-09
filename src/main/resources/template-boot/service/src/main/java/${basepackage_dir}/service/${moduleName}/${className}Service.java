@@ -70,8 +70,7 @@ public class ${className}Service {
 	 */
 	public ${className}Dto get${className}By(${className}Dto ${classNameLower}Dto) {
 
-		${className} ${classNameLower} = TransferUtil.transfer(${classNameLower}Dto, ${className}.class);
-		${className} result = ${classNameLower}Mapper.getBy(${classNameLower});
+		${className} result = ${classNameLower}Mapper.getBy(${classNameLower}Dto);
 
 		return TransferUtil.transfer(result, ${className}Dto.class);
 	}
@@ -91,8 +90,8 @@ public class ${className}Service {
 	 * @return
 	 */
 	public void deleteBy(${className}Dto ${classNameLower}Dto) {
-		${className} ${classNameLower} = TransferUtil.transfer(${classNameLower}Dto, ${className}.class);
-		${classNameLower}Mapper.deleteSelective(${classNameLower});
+
+		${classNameLower}Mapper.deleteSelective(${classNameLower}Dto);
 	}
 
 	/**
@@ -137,8 +136,7 @@ public class ${className}Service {
 
 	public List<${className}Dto> getBy(${className}Dto ${classNameLower}Dto) {
 
-		${className} ${classNameLower} = TransferUtil.transfer(${classNameLower}Dto, ${className}.class);
-		List<${className}> resultList = ${classNameLower}Mapper.list(${classNameLower});
+		List<${className}> resultList = ${classNameLower}Mapper.list(${classNameLower}Dto);
 
 		return TransferUtil.transfer(resultList, ${className}Dto.class);
 	}
@@ -167,9 +165,8 @@ public class ${className}Service {
 
 		PagingUtil.reset();
 
-		${className} ${classNameLower} = TransferUtil.transfer(${classNameLower}Dto, ${className}.class);
 		Page<${className}> page = PageHelper.startPage(pageIndex, pageSize);
-		List<${className}> resultList = ${classNameLower}Mapper.list(${classNameLower});
+		List<${className}> resultList = ${classNameLower}Mapper.list(${classNameLower}Dto);
 
 		PagingUtil.set(page, resultList.size());
 

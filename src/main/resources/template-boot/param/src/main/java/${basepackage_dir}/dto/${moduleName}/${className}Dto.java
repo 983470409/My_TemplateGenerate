@@ -15,8 +15,13 @@ import java.util.Date;
 public class ${className}Dto {
 
     <#list table.columns as column>
+    <#if column.sqlName != "create_time" && column.sqlName != "update_time">
     @ApiModelProperty(value = "${column.remarks}")
-    private ${column.simpleJavaType} ${column.columnNameLower};  
+    private ${column.simpleJavaType} ${column.columnNameLower};
+    </#if>
     </#list>
-
+    @ApiModelProperty(value = "查询开始时间")
+    private Date startDate;
+    @ApiModelProperty(value = "查询结束时间")
+    private Date endDate;
 }

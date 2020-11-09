@@ -7,6 +7,7 @@ package ${basepackage}.mapper.${moduleName};
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import ${basepackage}.domain.${moduleName}.${className};
+import ${basepackage}.dto.${moduleName}.${className}Dto;
 
 
 /**
@@ -28,33 +29,19 @@ public interface ${className}Mapper {
      */
     List<${className}> selectByPrimaryKeys(List<String> ids);
 
-//    /**
-//     * 获得分页数据
-//     * @param record
-//     * @return
-//     */
-//    List<${className}> listPage(${className} record);
-
-//    /**
-//     * 分页接口获得数据条数
-//     * @param record
-//     * @return
-//     */
-//    Long listPageCount(${className} record);
-
     /**
      * 通过参数获得数据
-     * @param record
+     * @param ${classNameLower}Dto
      * @return
      */
-    List<${className}> list(${className} record);
+    List<${className}> list(${className}Dto ${classNameLower}Dto);
 
     /**
      * 获得单个数据
-     * @param record
+     * @param ${classNameLower}Dto
      * @return
      */
-    ${className} getBy(${className} record);
+    ${className} getBy(${className}Dto ${classNameLower}Dto);
 
     /**
      * 根据id删除数据
@@ -65,10 +52,10 @@ public interface ${className}Mapper {
 
     /**
      * 删除数据
-     * @param record
+     * @param ${classNameLower}Dto
      * @return
      */
-    int deleteSelective(${className} record);
+    int deleteSelective(${className}Dto ${classNameLower}Dto);
 
     /**
      * 根据id列表量删除
@@ -79,30 +66,30 @@ public interface ${className}Mapper {
 
     /**
      * 插入数据
-     * @param record
+     * @param ${classNameLower}
      * @return
      */
-    int insertSelective(${className} record);
+    int insertSelective(${className} ${classNameLower});
 
     /**
      * 更新数据
-     * @param record
+     * @param ${classNameLower}
      * @return
      */
-    int updateByPrimaryKeySelective(${className} record);
+    int updateByPrimaryKeySelective(${className} ${classNameLower});
 
     /**
      * 全量更新数据
-     * @param record
+     * @param ${classNameLower}
      * @return
      */
-    int updateByPrimaryKey(${className} record);
+    int updateByPrimaryKey(${className} ${classNameLower});
 
     /**
      * 批量插入多个
-     * @param recordList
+     * @param ${classNameLower}List
      * @return
      */
-    int batchInsert(List<${className}> recordList);
+    int batchInsert(List<${className}> ${classNameLower}List);
 
 }
