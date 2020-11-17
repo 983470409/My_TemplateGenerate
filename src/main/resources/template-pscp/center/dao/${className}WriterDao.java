@@ -3,7 +3,7 @@
 <#assign classNameLower = className?uncap_first>   
 
 package ${basepackage}.dao.write;
-
+import ${basepackage}.dto.*;
 import ${basepackage}.entity.${className};
 import java.util.List;
 
@@ -47,10 +47,4 @@ public interface ${className}WriterDao {
      */
     int batchDelete(List<String> idList);
 
-    /**
-     * 根据id列表量删除
-     * @param idList
-     * @return
-     */
-    int batchDelete(List<String> idList);
 }

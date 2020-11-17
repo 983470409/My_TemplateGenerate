@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel(value = "${className}ListVo", description = "${className}查询ListVo的对象")
-public class ${className}ListVo implements Serializable {
+public class ${className}ListVo extends BaseVo implements Serializable {
     //TODO 添加序列化Id
 
     <#list table.columns as column>

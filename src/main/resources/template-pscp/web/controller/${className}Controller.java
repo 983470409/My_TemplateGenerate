@@ -15,12 +15,13 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import ${basepackage}.entity.${className};
 import ${basepackage}.facade.${className}Facade;
-import ${basepackage}.vo.${className}Vo;
 import io.swagger.annotations.Api;
-import com.gzhc365.${deptFlag}.common.PageBean;
+import com.gzhc365.${deptFlag}.common.vo.PageBean;
 import com.gzhc365.cloud.commons.api.ApiResult;
 import java.util.List;
-
+import ${basepackage}.module.${classNameLower}.model.reqVo.*;
+import ${basepackage}.module.${classNameLower}.model.respVo.*;
+import ${basepackage}.module.${classNameLower}.service.*;
 /**
  <#include "/java_description.include">
  */

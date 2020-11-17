@@ -2,7 +2,6 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.vo;
 
-import com.gzhc365.${deptFlag}.common.vo.BaseVo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;

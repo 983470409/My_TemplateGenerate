@@ -5,7 +5,7 @@
 package ${basepackage}.dao.read;
 
 import java.util.List;
-import ${basepackage}.vo.${className}Vo;
+import ${basepackage}.dto.*;
 import ${basepackage}.entity.${className};
 
 

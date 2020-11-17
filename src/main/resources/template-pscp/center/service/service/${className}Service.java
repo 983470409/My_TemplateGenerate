@@ -2,8 +2,7 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.service;
 
-import com.gzhc365.${deptFlag}.common.PageParam;
-import com.gzhc365.${deptFlag}.common.PageBean;
+import com.gzhc365.${deptFlag}.common.vo.PageBean;
 import java.util.List;
 import ${basepackage}.dto.*;
 import ${basepackage}.entity.${className};
@@ -56,9 +55,23 @@ public interface ${className}Service  {
 
     /**
      * 删除
-     * @param ${classNameLower}
+     * @param id
      * @return
      */
     int deleteById(Long id);
+
+    /**
+     * 根据主键id列表获得数据
+     * @param ids
+     * @return
+     */
+    List<${className}> selectByPrimaryKeys(List<String> ids);
+
+    /**
+     * 根据主键id列表删除数据
+     * @param ids
+     * @return
+     */
+    int deleteByIds(List<String> ids);
 
 }

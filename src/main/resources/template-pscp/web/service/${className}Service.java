@@ -3,23 +3,21 @@
 <#assign classNameLower = className?uncap_first>
 package ${basepackage}.service;
 
+import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import ${basepackage}.entity.${className};
 import ${basepackage}.facade.${className}Facade;
-import ${basepackage}.vo.${className}Vo;
 import io.swagger.annotations.Api;
-import com.gzhc365.${deptFlag}.common.PageBean;
+import com.gzhc365.${deptFlag}.common.vo.PageBean;
 import com.gzhc365.cloud.commons.api.ApiResult;
 import java.util.List;
+import ${basepackage}.module.${classNameLower}.model.reqVo.*;
+import ${basepackage}.module.${classNameLower}.model.respVo.*;
 
 /**
  <#include "/java_description.include">
@@ -98,3 +96,4 @@ public class ${className}Service {
     }
 
 }
+

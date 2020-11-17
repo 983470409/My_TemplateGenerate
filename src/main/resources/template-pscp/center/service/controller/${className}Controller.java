@@ -8,18 +8,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ${basepackage}.entity.${className};
-import ${basepackage}.facade.${className}Facade;
 import ${basepackage}.dto.*;
 import ${basepackage}.service.${className}Service;
 import java.util.List;
 import org.springframework.beans.BeanUtils;
-import com.gzhc365.${deptFlag}.common.PageBean;
+import com.gzhc365.${deptFlag}.common.vo.PageBean;
 import com.gzhc365.cloud.commons.api.ApiResult;
 import ${basepackage}.api.${className}Api;
 /**
@@ -73,15 +71,15 @@ public class ${className}Controller implements ${className}Api{
 
     /**
      * 更新数据
-     * @param  ${classNameLower}UpdDto
+     * @param  ${classNameLower}UptDto
      * @return
      */
     @Override
-    public ApiResult<Integer> update(@RequestBody ${className}UpdDto ${classNameLower}UpdDto){
-        logger.info(" ${classNameLower}/update 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}UpdDto));
+    public ApiResult<Integer> update(@RequestBody ${className}UptDto ${classNameLower}UptDto){
+        logger.info(" ${classNameLower}/update 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}UptDto));
 
         ${className} ${classNameLower} = new ${className}();
-        BeanUtils.copyProperties(${classNameLower}UpdDto, ${classNameLower});
+        BeanUtils.copyProperties(${classNameLower}UptDto, ${classNameLower});
 
         return new  ApiResult<>(${classNameLower}Service.update(${classNameLower}));
     }

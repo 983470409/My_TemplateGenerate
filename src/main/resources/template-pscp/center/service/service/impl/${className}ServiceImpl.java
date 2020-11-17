@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gzhc365.${deptFlag}.common.PageBean;
+import com.gzhc365.${deptFlag}.common.vo.PageBean;
 import ${basepackage}.dto.*;
 import ${basepackage}.entity.${className};
 import ${basepackage}.dao.read.${className}ReaderDao;
@@ -16,7 +16,6 @@ import ${basepackage}.dao.write.${className}WriterDao;
 import ${basepackage}.service.${className}Service;
 import java.util.List;
 
-<#include "/java_imports.include">
 
 /**
  <#include "/java_description.include">
@@ -33,7 +32,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 
 	/**
 	 * 获取数据列表
-	 * @param ${classNameLower}Vo
+	 * @param ${classNameLower}ListDto
 	 * @return
 	 */
 	@Override
@@ -53,7 +52,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 
 	/**
 	 * 分页获取数据
-	 * @param ${classNameLower}Vo
+	 * @param ${classNameLower}PageDto
 	 * @return
 	 */
 	@Override
@@ -104,7 +103,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 
 	/**
 	 * 删除
-	 * @param ${classNameLower}
+	 * @param id
 	 * @return
 	 */
 	@Override
@@ -120,5 +119,15 @@ public class ${className}ServiceImpl implements ${className}Service {
 	@Override
 	public List<${className}> selectByPrimaryKeys(List<String> ids){
 		return ${classNameLower}ReaderDao.selectByPrimaryKeys(ids);
+	}
+
+	/**
+	 * 根据主键id列表删除数据
+	 * @param ids
+	 * @return
+	 */
+	@Override
+	public int deleteByIds(List<String> ids){
+		return ${classNameLower}WriterDao.batchDelete(ids);
 	}
 }
