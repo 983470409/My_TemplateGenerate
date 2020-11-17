@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ${basepackage}.entity.${className};
 import ${basepackage}.facade.${className}Facade;
-import ${basepackage}.dto.${className}Vo;
+import ${basepackage}.dto.*;
 import ${basepackage}.service.${className}Service;
 import java.util.List;
 import org.springframework.beans.BeanUtils;
@@ -77,7 +77,7 @@ public class ${className}Controller implements ${className}Api{
      * @return
      */
     @Override
-    public ApiResult<${className}> update(@RequestBody ${className}UpdDto ${classNameLower}UpdDto){
+    public ApiResult<Integer> update(@RequestBody ${className}UpdDto ${classNameLower}UpdDto){
         logger.info(" ${classNameLower}/update 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}UpdDto));
 
         ${className} ${classNameLower} = new ${className}();
@@ -92,7 +92,7 @@ public class ${className}Controller implements ${className}Api{
      * @return
      */
     @Override
-    public ApiResult<${className}> delete(@RequestBody ${className}DelDto ${classNameLower}DelDto){
+    public ApiResult<Integer> delete(@RequestBody ${className}DelDto ${classNameLower}DelDto){
         logger.info(" ${classNameLower}/delete 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}DelDto));
 
         ${className} ${classNameLower} = new ${className}();
@@ -106,7 +106,7 @@ public class ${className}Controller implements ${className}Api{
      * @param  id
      * @return
      */
-    public ApiResult<${className}> deleteById(@RequestParam("id") long id){
+    public ApiResult<Integer> deleteById(@RequestParam("id") long id){
         logger.info(" ${classNameLower}/deleteById 接收的参数为 {} " ,JSONObject.toJSON(id));
 
         return new ApiResult<>(${classNameLower}Service.deleteById(id));

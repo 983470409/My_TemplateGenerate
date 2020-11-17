@@ -33,31 +33,31 @@ public class ${className}FacadeFallback implements FallbackFactory<${className}F
         return new ${className}Facade() {
 
             public ApiResult<List<${className}>> get${className}s(${className}Vo ${classNameLower}Vo){
-                return ApiResult.error("服务繁忙，请稍候再试");
+                return ApiResult.fail("服务繁忙，请稍候再试");
             }
 
             public ApiResult<${className}> get${className}ById(long id) {
-                return ApiResult.error("服务繁忙，请稍候再试");
+                return ApiResult.fail("服务繁忙，请稍候再试");
             }
 
             public ApiResult<${className}> get${className}(${className}Vo ${classNameLower}Vo){
-                return ApiResult.error("服务繁忙，请稍候再试");
+                return ApiResult.fail("服务繁忙，请稍候再试");
             }
 
             public ApiResult<${className}> save(${className}Vo ${classNameLower}Vo){
-                return ApiResult.error("服务繁忙，请稍候再试");
+                return ApiResult.fail("服务繁忙，请稍候再试");
             }
 
             public ApiResult<${className}> update(${className}Vo ${classNameLower}Vo){
-                return ApiResult.error("服务繁忙，请稍候再试");
+                return ApiResult.fail("服务繁忙，请稍候再试");
             }
 
             public ApiResult<${className}> delete(${className}Vo ${classNameLower}Vo){
-                return ApiResult.error("服务繁忙，请稍候再试");
+                return ApiResult.fail("服务繁忙，请稍候再试");
             }
 
             public ApiResult<PageBean<${className}>> listPage(${className}Vo ${classNameLower}Vo ){
-                return ApiResult.error("服务繁忙，请稍候再试");
+                return ApiResult.fail("服务繁忙，请稍候再试");
             }
         };
 

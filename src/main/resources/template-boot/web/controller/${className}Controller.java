@@ -41,7 +41,7 @@ public class ${className}Controller  {
            ${classNameLower}Facade.save(${classNameLower}Vo);
         }catch (Exception e){
             logger.error("/add方法系统异常，请稍后重试", e);
-            apiResult = ApiResult.error("新增失败");
+            apiResult = ApiResult.fail("新增失败");
         }
         return apiResult;
     }
@@ -54,7 +54,7 @@ public class ${className}Controller  {
             ${classNameLower}Facade.update(${classNameLower}Vo);
         }catch (Exception e){
             logger.error("/update方法系统异常，请稍后重试", e);
-            apiResult = ApiResult.error("更新失败");
+            apiResult = ApiResult.fail("更新失败");
         }
         return apiResult;
     }
@@ -67,7 +67,7 @@ public class ${className}Controller  {
             ${classNameLower}Facade.delete(${classNameLower}Vo);
         }catch (Exception e){
             logger.error("/delete方法系统异常，请稍后重试:{}", e);
-            apiResult = ApiResult.error("删除失败");
+            apiResult = ApiResult.fail("删除失败");
         }
         return apiResult;
     }
@@ -81,7 +81,7 @@ public class ${className}Controller  {
             apiResult.setData(listPage);
         }catch (Exception e){
             logger.error("/page方法系统异常，请稍后重试,{}", e);
-            apiResult = ApiResult.error("分页失败");
+            apiResult = ApiResult.fail("分页失败");
         }
         return apiResult;
     }
@@ -96,7 +96,7 @@ public class ${className}Controller  {
             apiResult.setData(${classNameLower}s);
         }catch (Exception e){
             logger.error("/get${classNameLower}s:方法系统异常，请稍后重试,{}", e);
-            apiResult = ApiResult.error("获取数据失败");
+            apiResult = ApiResult.fail("获取数据失败");
         }
         return apiResult;
     }
@@ -110,7 +110,7 @@ public class ${className}Controller  {
             apiResult.setData(${classNameLower});
         }catch (Exception e){
             logger.error("/get${classNameLower}方法系统异常，请稍后重试,{}", e);
-            apiResult = ApiResult.error("获取数据失败");
+            apiResult = ApiResult.fail("获取数据失败");
         }
         return apiResult;
     }
@@ -124,7 +124,7 @@ public class ${className}Controller  {
             apiResult.setData(${classNameLower});
         }catch (Exception e){
             logger.error("/get${classNameLower}byid:方法系统异常，请稍后重试,{}", e);
-            apiResult = ApiResult.error("获取数据失败");
+            apiResult = ApiResult.fail("获取数据失败");
         }
         return apiResult;
     }

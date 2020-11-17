@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gzhc365.${deptFlag}.common.PageBean;
-import ${basepackage}.vo.${className}Vo;
+import ${basepackage}.dto.*;
 import ${basepackage}.entity.${className};
 import ${basepackage}.dao.read.${className}ReaderDao;
 import ${basepackage}.dao.write.${className}WriterDao;
@@ -32,13 +32,13 @@ public class ${className}ServiceImpl implements ${className}Service {
 	private ${className}WriterDao ${classNameLower}WriterDao;
 
 	/**
-	 * 获取数据
+	 * 获取数据列表
 	 * @param ${classNameLower}Vo
 	 * @return
 	 */
 	@Override
-	public List<${className}> get${className}sBy(${className}Vo ${classNameLower}Vo){
-		return ${classNameLower}ReaderDao.get${className}s(${classNameLower}Vo);
+	public List<${className}> get${className}sBy(${className}ListDto ${classNameLower}ListDto){
+		return ${classNameLower}ReaderDao.get${className}s(${classNameLower}ListDto);
 	}
 
 	/**
@@ -57,13 +57,13 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @return
 	 */
 	@Override
-	public PageBean<${className}> listPage(${className}Vo ${classNameLower}Vo) {
+	public PageBean<${className}> listPage(${className}PageDto ${classNameLower}PageDto) {
 		// 统计总记录数
-		Long count = ${classNameLower}ReaderDao.listPageCount(${classNameLower}Vo);
+		Long count = ${classNameLower}ReaderDao.listPageCount(${classNameLower}PageDto);
 		// 获取分页数据集
-		List<${className}> list = ${classNameLower}ReaderDao.listPage(${classNameLower}Vo);
+		List<${className}> list = ${classNameLower}ReaderDao.listPage(${classNameLower}PageDto);
 		// 构造分页对象
-		return new PageBean<>(${classNameLower}Vo.getPageIndex(), ${classNameLower}Vo.getPageSize(), count.intValue(), list);
+		return new PageBean<>(${classNameLower}PageDto.getPageIndex(), ${classNameLower}PageDto.getPageSize(), count.intValue(), list);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @return
 	 */
 	@Override
-	public ${className} save(${className} ${classNameLower}) {
+	public ${className} save(${className} ${classNameLower}){
 		int insertSelective = ${classNameLower}WriterDao.insertSelective(${classNameLower});
 		if (insertSelective > 0) {
 			return ${classNameLower};
@@ -88,13 +88,8 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @return
 	 */
 	@Override
-	public ${className} update(${className} ${classNameLower}){
-		int flag = ${classNameLower}WriterDao.updateByPrimaryKeySelective(${classNameLower});
-		if (flag > 0) {
-			return ${classNameLower};
-		} else {
-			return null;
-		}
+	public int update(${className} ${classNameLower}){
+		return ${classNameLower}WriterDao.updateByPrimaryKeySelective(${classNameLower});
 	}
 
 	/**
@@ -103,13 +98,8 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @return
 	 */
 	@Override
-	public ${className} delete(${className} ${classNameLower}){
-		int flag = ${classNameLower}WriterDao.deleteSelective(${classNameLower});
-		if (flag > 0) {
-			return ${classNameLower};
-		} else {
-			return null;
-		}
+	public int delete(${className} ${classNameLower}){
+		return ${classNameLower}WriterDao.deleteSelective(${classNameLower});
 	}
 
 	/**
@@ -117,8 +107,18 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @param ${classNameLower}
 	 * @return
 	 */
-	int deleteById(Long id){
+	@Override
+	public int deleteById(Long id){
 		return ${classNameLower}WriterDao.deleteByPrimaryKey(id);
 	}
 
+	/**
+	 * 根据主键id列表获得数据
+	 * @param ids
+	 * @return
+	 */
+	@Override
+	public List<${className}> selectByPrimaryKeys(List<String> ids){
+		return ${classNameLower}ReaderDao.selectByPrimaryKeys(ids);
+	}
 }

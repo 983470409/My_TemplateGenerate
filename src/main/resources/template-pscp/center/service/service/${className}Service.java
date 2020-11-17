@@ -5,7 +5,7 @@ package ${basepackage}.service;
 import com.gzhc365.${deptFlag}.common.PageParam;
 import com.gzhc365.${deptFlag}.common.PageBean;
 import java.util.List;
-import ${basepackage}.vo.${className}Vo;
+import ${basepackage}.dto.*;
 import ${basepackage}.entity.${className};
 /**
  <#include "/java_description.include">
@@ -14,10 +14,10 @@ public interface ${className}Service  {
 
     /**
      * 获取数据
-     * @param ${classNameLower}Vo
+     * @param ${classNameLower}ListDto
      * @return
      */
-    List<${className}> get${className}sBy(${className}Vo ${classNameLower}Vo);
+    List<${className}> get${className}sBy(${className}ListDto ${classNameLower}ListDto);
 
     /**
      * 通过主键id获得数据
@@ -28,10 +28,10 @@ public interface ${className}Service  {
 
     /**
      * 分页获取数据
-     * @param ${classNameLower}Vo
+     * @param ${classNameLower}PageDto
      * @return
      */
-    PageBean<${className}> listPage(${className}Vo ${classNameLower}Vo);
+    PageBean<${className}> listPage(${className}PageDto ${classNameLower}PageDto);
 
     /**
      * 新增对象
@@ -45,14 +45,14 @@ public interface ${className}Service  {
      * @param ${classNameLower}
      * @return
      */
-    ${className} update(${className} ${classNameLower});
+    int update(${className} ${classNameLower});
 
     /**
      * 删除
      * @param ${classNameLower}
      * @return
      */
-    ${className} delete(${className} ${classNameLower});
+    int delete(${className} ${classNameLower});
 
     /**
      * 删除

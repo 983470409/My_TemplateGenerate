@@ -98,12 +98,19 @@
 
 			(<#list table.columns as column>
 				<#if column.sqlName != "id">
-					<@mapperEl "item."+column.columnNameFirstLower />,
+					<@mapperEl "item."+column.columnNameFirstLower /><#if column_has_next>,</#if>
 				</#if>
 			</#list>)
 
 		</foreach>
 	</insert>
+
+	<delete  id="batchDelete" parameterType="java.util.List">
+		delete from ${table.sqlName} where id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			<@mapperEl "id"/>
+		</foreach>
+	</delete>
 
 </mapper>
 

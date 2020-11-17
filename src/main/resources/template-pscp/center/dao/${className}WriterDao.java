@@ -40,12 +40,17 @@ public interface ${className}WriterDao {
      */
     int updateByPrimaryKeySelective( ${className} t);
 
-//    /**
-//     * 批量插入多个
-//     * @param t
-//     * @return
-//     */
-//    int batchInsert(List<${className}> t);
+    /**
+     * 根据id列表量删除
+     * @param idList
+     * @return
+     */
+    int batchDelete(List<String> idList);
 
-
+    /**
+     * 根据id列表量删除
+     * @param idList
+     * @return
+     */
+    int batchDelete(List<String> idList);
 }
