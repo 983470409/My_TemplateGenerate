@@ -37,6 +37,12 @@
 		</if>
 		</#if>
 		</#list>
+		<if test="startDate != null">
+			AND create_time <![CDATA[ >= ]]> <@mapperEl "startDate"/>
+		</if>
+		<if test="endDate != null">
+			AND create_time <![CDATA[ <= ]]> <@mapperEl "endDate"/>
+		</if>
 	</sql>
 
 	<sql id="condition_sql_like">
@@ -52,6 +58,12 @@
 		</if>
 		</#if>
 		</#list>
+		<if test="startDate != null">
+			AND create_time <![CDATA[ >= ]]> <@mapperEl "startDate"/>
+		</if>
+		<if test="endDate != null">
+			AND create_time <![CDATA[ <= ]]> <@mapperEl "endDate"/>
+		</if>
 	</sql>
 
 	<select id="selectByPrimaryKey" parameterType="long" resultMap="BaseResultMap">
