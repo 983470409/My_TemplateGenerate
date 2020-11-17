@@ -18,7 +18,8 @@ import com.gzhc365.cloud.commons.api.ApiResult;
 import java.util.List;
 import ${basepackage}.module.${classNameLower}.model.reqVo.*;
 import ${basepackage}.module.${classNameLower}.model.respVo.*;
-
+import org.springframework.beans.BeanUtils;
+import ${basepackage}.dto.*;
 /**
  <#include "/java_description.include">
  */
@@ -29,7 +30,7 @@ public class ${className}Service {
     @Autowired
     private ${className}Facade ${classNameLower}Facade;
 
-    public ApiResult add(HttpServletRequest request, HttpServletResponse response, ${className}AddVo ${classNameLower}AddVo) {
+    public ApiResult add(${className}AddVo ${classNameLower}AddVo) {
         ${className}AddDto ${classNameLower}AddDto = new ${className}AddDto();
 
         BeanUtils.copyProperties(${classNameLower}AddVo, ${classNameLower}AddDto);
@@ -38,38 +39,35 @@ public class ${className}Service {
         return ApiResult.success("新增成功");
     }
 
-    public ApiResult update${className}(HttpServletRequest request, HttpServletResponse response, ${className}UptVo ${classNameLower}UptVo) {
+    public ApiResult update(${className}UptVo ${classNameLower}UptVo) {
 
         ${className}UptDto ${classNameLower}UptDto = new ${className}UptDto();
 
-        BeanUtils.copyProperties(${classNameLower}UpdVo, ${classNameLower}UptDto);
+        BeanUtils.copyProperties(${classNameLower}UptVo, ${classNameLower}UptDto);
         ${classNameLower}Facade.update(${classNameLower}UptDto);
 
         return ApiResult.success("更新成功");
     }
 
-    public ApiResult delete${className}(HttpServletRequest request, HttpServletResponse response, ${className}DelVo ${classNameLower}DelVo) {
+    public ApiResult delete(${className}DelVo ${classNameLower}DelVo) {
 
         ${className}DelDto ${classNameLower}DelDto = new ${className}DelDto();
 
         BeanUtils.copyProperties(${classNameLower}DelVo, ${classNameLower}DelDto);
-        ${classNameLower}Facade.delete(${classNameLower}Vo);
+        ${classNameLower}Facade.delete(${classNameLower}DelDto);
 
         return ApiResult.success("删除成功");
     }
 
-    public ApiResult deleteById${className}(HttpServletRequest request, HttpServletResponse response, Long id) {
+    public ApiResult deleteById(HttpServletResponse response, Long id) {
 
-        ${className}DelDto ${classNameLower}DelDto = new ${className}DelDto();
-
-        BeanUtils.copyProperties(${classNameLower}DelVo, ${classNameLower}DelDto);
-        ${classNameLower}Facade.deleteById(${classNameLower}Vo);
+        ${classNameLower}Facade.deleteById(id);
 
         return ApiResult.success("删除成功");
 
     }
 
-    public ApiResult page(HttpServletRequest request, HttpServletResponse response, ${className}PageVo ${classNameLower}PageVo) {
+    public ApiResult page(${className}PageVo ${classNameLower}PageVo) {
 
         ${className}PageDto ${classNameLower}PageDto = new ${className}PageDto();
 
@@ -79,7 +77,7 @@ public class ${className}Service {
         return ApiResult.success(listPage);
     }
 
-    public ApiResult get${classNameLower}s(HttpServletRequest request, HttpServletResponse response, ${className}ListVo ${classNameLower}ListVo) {
+    public ApiResult get${classNameLower}List(${className}ListVo ${classNameLower}ListVo) {
         ${className}ListDto ${classNameLower}ListDto = new ${className}ListDto();
 
         BeanUtils.copyProperties(${classNameLower}ListVo, ${classNameLower}ListDto);
@@ -88,7 +86,7 @@ public class ${className}Service {
         return ApiResult.success(${classNameLower}s);
     }
 
-    public ApiResult get${classNameLower}ById(HttpServletRequest request, HttpServletResponse response, Long id) {
+    public ApiResult getById(Long id) {
 
         ${className} ${classNameLower} = ${classNameLower}Facade.get${className}ById(id).getData();
         return ApiResult.success(${classNameLower});

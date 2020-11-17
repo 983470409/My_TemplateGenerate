@@ -22,6 +22,7 @@ public class TemplateStarter {
         // 删除生成器的输出目录//
         g.deleteOutRootDir();
         g.generateByTable("t_pscpuser_accesser");
+        g.generateByAllTable();
 
     }
 

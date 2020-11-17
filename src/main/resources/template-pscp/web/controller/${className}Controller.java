@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,41 +36,41 @@ public class ${className}Controller  {
     private ${className}Service ${classNameLower}Service;
 
     @ResponseBody
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add", method = {RequestMethod.GET, RequestMethod.POST})
     public ApiResult add${className}(HttpServletRequest request, HttpServletResponse response, ${className}AddVo ${classNameLower}AddVo) {
         return ${classNameLower}Service.add(${classNameLower}AddVo);
     }
 
     @ResponseBody
-    @RequestMapping("/update")
+    @RequestMapping(value = "/update", method = {RequestMethod.GET, RequestMethod.POST})
     public ApiResult update${className}(HttpServletRequest request, HttpServletResponse response, ${className}UptVo ${classNameLower}UptVo) {
         return ${classNameLower}Service.update(${classNameLower}UptVo);
     }
 
     @ResponseBody
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
     public ApiResult delete${className}(HttpServletRequest request, HttpServletResponse response, ${className}DelVo ${classNameLower}DelVo) {
         return ${classNameLower}Service.delete(${classNameLower}DelVo);
     }
 
     @ResponseBody
-    @RequestMapping("/page")
-    public ApiResult page(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
+    @RequestMapping(value = "/page", method = {RequestMethod.GET, RequestMethod.POST})
+    public ApiResult page(HttpServletRequest request, HttpServletResponse response, ${className}PageVo ${classNameLower}PageVo) {
         return ${classNameLower}Service.page(${classNameLower}PageVo);
     }
 
     @ResponseBody
-    @RequestMapping("/get${classNameLower}s")
-    public ApiResult ${classNameLower}s(HttpServletRequest request, HttpServletResponse response, ${className}Vo ${classNameLower}Vo) {
-        return ${classNameLower}Service.get${classNameLower}s(${classNameLower}ListVo);
+    @RequestMapping(value = "/get${classNameLower}s", method = {RequestMethod.GET, RequestMethod.POST})
+    public ApiResult ${classNameLower}s(HttpServletRequest request, HttpServletResponse response, ${className}ListVo ${classNameLower}ListVo) {
+        return ${classNameLower}Service.get${classNameLower}List(${classNameLower}ListVo);
     }
 
 
 
     @ResponseBody
-    @RequestMapping("/get${classNameLower}byid")
+    @RequestMapping(value = "/get${classNameLower}byid", method = {RequestMethod.GET, RequestMethod.POST})
     public ApiResult get${classNameLower}ById(HttpServletRequest request, HttpServletResponse response, Long id) {
-        return ${classNameLower}Service.get${classNameLower}ById(id);
+        return ${classNameLower}Service.getById(id);
     }
 
 }
