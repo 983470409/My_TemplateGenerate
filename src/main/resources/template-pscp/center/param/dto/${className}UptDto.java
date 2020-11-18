@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 /**
  <#include "/java_description.include">
  */
@@ -16,7 +18,14 @@ public class ${className}UptDto implements Serializable {
     //TODO 添加序列化Id
 
     <#list table.columns as column>
+    <#if column.columnNameLower == "id">
     @ApiModelProperty(value = "${column.remarks}")
-    private ${column.simpleJavaType} ${column.columnNameLower};  
+    ${column.hibernateValidatorExprssion}
+    @NotNull
+    private ${column.simpleJavaType} ${column.columnNameLower};
+    <#else>
+    @ApiModelProperty(value = "${column.remarks}")
+    private ${column.simpleJavaType} ${column.columnNameLower};
+    </#if>
     </#list>
 }

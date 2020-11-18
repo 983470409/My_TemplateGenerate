@@ -12,10 +12,12 @@ import java.util.List;
 import ${basepackage}.entity.${className};
 import ${basepackage}.dto.*;
 import com.gzhc365.${deptFlag}.common.vo.PageBean;
+import org.springframework.validation.annotation.Validated;
 
 /**
  <#include "/java_description.include">
  */
+@Validated
 public interface ${className}Api{
 
     /**
