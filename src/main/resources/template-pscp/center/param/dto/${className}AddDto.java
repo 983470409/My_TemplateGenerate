@@ -10,6 +10,7 @@ import java.util.Date;
 import lombok.Data;
 import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.*;
+import javax.validation.constraints.NotBlank;
 
 /**
  <#include "/java_description.include">
@@ -20,7 +21,9 @@ public class ${className}AddDto implements Serializable {
     //TODO 添加序列化Id
     <#list table.columns as column>
     @ApiModelProperty(value = "${column.remarks}")
+    <#if column.hibernateValidatorExprssion != "">
     ${column.hibernateValidatorExprssion}
+    </#if>
     private ${column.simpleJavaType} ${column.columnNameLower};
 
     </#list>  

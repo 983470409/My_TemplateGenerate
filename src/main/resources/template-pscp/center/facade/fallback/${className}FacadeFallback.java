@@ -4,7 +4,7 @@
 package ${basepackage}.facade;
 
 import com.gzhc365.${deptFlag}.common.vo.PageBean;
-import com.gzhc365.cloud.commons.api.ApiResult;
+import com.gzhc365.${deptFlag}.common.BaseResult;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,32 +30,32 @@ public class ${className}FacadeFallback implements FallbackFactory<${className}F
 
         return new ${className}Facade() {
 
-            public ApiResult<List<${className}>> get${className}s(${className}ListDto ${classNameLower}ListDto){
-                return ApiResult.fail("服务繁忙，请稍候再试");
+            public BaseResult<List<${className}>> get${className}s(${className}ListDto ${classNameLower}ListDto){
+                return BaseResult.error("服务繁忙，请稍候再试");
             }
 
-            public ApiResult<${className}> get${className}ById(long id) {
-                return ApiResult.fail("服务繁忙，请稍候再试");
+            public BaseResult<${className}> get${className}ById(long id) {
+                return BaseResult.error("服务繁忙，请稍候再试");
             }
 
-            public ApiResult<${className}> save(${className}AddDto ${classNameLower}AddDto){
-                return ApiResult.fail("服务繁忙，请稍候再试");
+            public BaseResult<${className}> save(${className}AddDto ${classNameLower}AddDto){
+                return BaseResult.error("服务繁忙，请稍候再试");
             }
 
-            public ApiResult<Integer> update(${className}UptDto ${classNameLower}UptDto){
-                return ApiResult.fail("服务繁忙，请稍候再试");
+            public BaseResult<Integer> update(${className}UptDto ${classNameLower}UptDto){
+                return BaseResult.error("服务繁忙，请稍候再试");
             }
 
-            public ApiResult<Integer> delete(${className}DelDto ${classNameLower}DelDto){
-                return ApiResult.fail("服务繁忙，请稍候再试");
+            public BaseResult<Integer> delete(${className}DelDto ${classNameLower}DelDto){
+                return BaseResult.error("服务繁忙，请稍候再试");
             }
 
-            public ApiResult<PageBean<${className}>> listPage(${className}PageDto ${classNameLower}PageDto){
-                return ApiResult.fail("服务繁忙，请稍候再试");
+            public BaseResult<PageBean<${className}>> listPage(${className}PageDto ${classNameLower}PageDto){
+                return BaseResult.error("服务繁忙，请稍候再试");
             }
 
-            public ApiResult<Integer> deleteById(long id) {
-                return ApiResult.fail("服务繁忙，请稍候再试");
+            public BaseResult<Integer> deleteById(long id) {
+                return BaseResult.error("服务繁忙，请稍候再试");
             }
 
         };

@@ -18,7 +18,7 @@ import ${basepackage}.service.${className}Service;
 import java.util.List;
 import org.springframework.beans.BeanUtils;
 import com.gzhc365.${deptFlag}.common.vo.PageBean;
-import com.gzhc365.cloud.commons.api.ApiResult;
+import com.gzhc365.${deptFlag}.common.BaseResult;
 import ${basepackage}.api.${className}Api;
 /**
  <#include "/java_description.include">
@@ -39,9 +39,9 @@ public class ${className}Controller implements ${className}Api{
      * @return
      */
     @Override
-    public ApiResult<List<${className}>> get${className}s(@RequestBody ${className}ListDto ${classNameLower}ListDto){
+    public BaseResult<List<${className}>> get${className}s(@RequestBody ${className}ListDto ${classNameLower}ListDto){
         logger.info("接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}ListDto));
-        return  new  ApiResult<>(${classNameLower}Service.get${className}sBy(${classNameLower}ListDto));
+        return  new  BaseResult<>(${classNameLower}Service.get${className}sBy(${classNameLower}ListDto));
     }
 
     /**
@@ -50,8 +50,8 @@ public class ${className}Controller implements ${className}Api{
      * @return
      */
     @Override
-    public ApiResult<${className}> get${className}ById( @RequestParam("id") long id){
-        return new  ApiResult<>(${classNameLower}Service.getById(id));
+    public BaseResult<${className}> get${className}ById( @RequestParam("id") long id){
+        return new  BaseResult<>(${classNameLower}Service.getById(id));
     }
 
     /**
@@ -60,13 +60,13 @@ public class ${className}Controller implements ${className}Api{
      * @return
      */
     @Override
-    public ApiResult<${className}> save(@RequestBody ${className}AddDto ${classNameLower}AddDto){
+    public BaseResult<${className}> save(@RequestBody ${className}AddDto ${classNameLower}AddDto){
         logger.info("${classNameLower}/save 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}AddDto));
 
         ${className} ${classNameLower} = new ${className}();
         BeanUtils.copyProperties(${classNameLower}AddDto, ${classNameLower});
 
-        return new ApiResult<>( ${classNameLower}Service.save(${classNameLower}));
+        return new BaseResult<>( ${classNameLower}Service.save(${classNameLower}));
     }
 
     /**
@@ -75,13 +75,13 @@ public class ${className}Controller implements ${className}Api{
      * @return
      */
     @Override
-    public ApiResult<Integer> update(@RequestBody ${className}UptDto ${classNameLower}UptDto){
+    public BaseResult<Integer> update(@RequestBody ${className}UptDto ${classNameLower}UptDto){
         logger.info(" ${classNameLower}/update 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}UptDto));
 
         ${className} ${classNameLower} = new ${className}();
         BeanUtils.copyProperties(${classNameLower}UptDto, ${classNameLower});
 
-        return new  ApiResult<>(${classNameLower}Service.update(${classNameLower}));
+        return new  BaseResult<>(${classNameLower}Service.update(${classNameLower}));
     }
 
     /**
@@ -90,13 +90,13 @@ public class ${className}Controller implements ${className}Api{
      * @return
      */
     @Override
-    public ApiResult<Integer> delete(@RequestBody ${className}DelDto ${classNameLower}DelDto){
+    public BaseResult<Integer> delete(@RequestBody ${className}DelDto ${classNameLower}DelDto){
         logger.info(" ${classNameLower}/delete 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}DelDto));
 
         ${className} ${classNameLower} = new ${className}();
         BeanUtils.copyProperties(${classNameLower}DelDto, ${classNameLower});
 
-        return new ApiResult<>(${classNameLower}Service.delete(${classNameLower}));
+        return new BaseResult<>(${classNameLower}Service.delete(${classNameLower}));
     }
 
     /**
@@ -104,10 +104,10 @@ public class ${className}Controller implements ${className}Api{
      * @param  id
      * @return
      */
-    public ApiResult<Integer> deleteById(@RequestParam("id") long id){
+    public BaseResult<Integer> deleteById(@RequestParam("id") long id){
         logger.info(" ${classNameLower}/deleteById 接收的参数为 {} " ,JSONObject.toJSON(id));
 
-        return new ApiResult<>(${classNameLower}Service.deleteById(id));
+        return new BaseResult<>(${classNameLower}Service.deleteById(id));
     }
 
     /**
@@ -116,9 +116,9 @@ public class ${className}Controller implements ${className}Api{
      * @return
      */
     @Override
-    public ApiResult<PageBean<${className}>> listPage(@RequestBody ${className}PageDto ${classNameLower}PageDto){
+    public BaseResult<PageBean<${className}>> listPage(@RequestBody ${className}PageDto ${classNameLower}PageDto){
         logger.info("${classNameLower}/listPage 接收的参数为 {} " ,JSONObject.toJSON(${classNameLower}PageDto));
-        return new  ApiResult<>((PageBean<${className}>)${classNameLower}Service.listPage(${classNameLower}PageDto));
+        return new  BaseResult<>((PageBean<${className}>)${classNameLower}Service.listPage(${classNameLower}PageDto));
     }
 
 }

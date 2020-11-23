@@ -3,7 +3,7 @@
 <#assign classNameLower = className?uncap_first>
 package ${basepackage}.facade.api;
 
-import com.gzhc365.cloud.commons.api.ApiResult;
+import com.gzhc365.${deptFlag}.common.BaseResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +26,7 @@ public interface ${className}Api{
      * @return
      */
     @RequestMapping(value="${classNameLower}/get${className}s",  method = { RequestMethod.POST })
-    ApiResult<List<${className}>> get${className}s(@RequestBody ${className}ListDto ${classNameLower}ListDto);
+    BaseResult<List<${className}>> get${className}s(@RequestBody ${className}ListDto ${classNameLower}ListDto);
 
     /**
      * 根据id获得数据
@@ -34,7 +34,7 @@ public interface ${className}Api{
      * @return
      */
     @RequestMapping(value="${classNameLower}/get${className}ById",  method = { RequestMethod.POST })
-    ApiResult<${className}> get${className}ById(@RequestParam("id") long id);
+    BaseResult<${className}> get${className}ById(@RequestParam("id") long id);
 
     /**
      * 新增数据
@@ -42,7 +42,7 @@ public interface ${className}Api{
      * @return
      */
     @RequestMapping(value="${classNameLower}/save",  method = { RequestMethod.POST })
-    ApiResult<${className}> save(@RequestBody ${className}AddDto ${classNameLower}AddDto);
+    BaseResult<${className}> save(@RequestBody ${className}AddDto ${classNameLower}AddDto);
 
     /**
      * 更新数据
@@ -50,7 +50,7 @@ public interface ${className}Api{
      * @return
      */
     @RequestMapping(value="${classNameLower}/update",  method = { RequestMethod.POST })
-    ApiResult<Integer> update(@RequestBody ${className}UptDto ${classNameLower}UptDto);
+    BaseResult<Integer> update(@RequestBody ${className}UptDto ${classNameLower}UptDto);
 
     /**
      * 删除数据
@@ -58,7 +58,7 @@ public interface ${className}Api{
      * @return
      */
     @RequestMapping(value="${classNameLower}/delete",  method = { RequestMethod.POST })
-    ApiResult<Integer> delete(@RequestBody ${className}DelDto ${classNameLower}DelDto);
+    BaseResult<Integer> delete(@RequestBody ${className}DelDto ${classNameLower}DelDto);
 
     /**
      * 根据主键id删除数据
@@ -66,7 +66,7 @@ public interface ${className}Api{
      * @return
      */
     @RequestMapping(value="${classNameLower}/deleteById",  method = { RequestMethod.POST })
-    ApiResult<Integer> deleteById(@RequestParam("id") long id);
+    BaseResult<Integer> deleteById(@RequestParam("id") long id);
 
     /**
      * 分页查询
@@ -74,5 +74,5 @@ public interface ${className}Api{
      * @return
      */
     @RequestMapping(value="${classNameLower}/listPage",  method = { RequestMethod.POST })
-    ApiResult<PageBean<${className}>> listPage(@RequestBody ${className}PageDto ${classNameLower}PageDto);
+    BaseResult<PageBean<${className}>> listPage(@RequestBody ${className}PageDto ${classNameLower}PageDto);
 }

@@ -18,7 +18,7 @@ import ${basepackage}.entity.${className};
 import ${basepackage}.facade.${className}Facade;
 import io.swagger.annotations.Api;
 import com.gzhc365.${deptFlag}.common.vo.PageBean;
-import com.gzhc365.cloud.commons.api.ApiResult;
+import com.gzhc365.${deptFlag}.common.BaseResult;
 import java.util.List;
 import ${basepackage}.module.${classNameLower}.model.reqVo.*;
 import ${basepackage}.module.${classNameLower}.model.respVo.*;
@@ -37,31 +37,31 @@ public class ${className}Controller  {
 
     @ResponseBody
     @RequestMapping(value = "/add", method = {RequestMethod.GET, RequestMethod.POST})
-    public ApiResult add${className}(HttpServletRequest request, HttpServletResponse response, ${className}AddVo ${classNameLower}AddVo) {
+    public BaseResult add${className}(HttpServletRequest request, HttpServletResponse response, ${className}AddVo ${classNameLower}AddVo) {
         return ${classNameLower}Service.add(${classNameLower}AddVo);
     }
 
     @ResponseBody
     @RequestMapping(value = "/update", method = {RequestMethod.GET, RequestMethod.POST})
-    public ApiResult update${className}(HttpServletRequest request, HttpServletResponse response, ${className}UptVo ${classNameLower}UptVo) {
+    public BaseResult update${className}(HttpServletRequest request, HttpServletResponse response, ${className}UptVo ${classNameLower}UptVo) {
         return ${classNameLower}Service.update(${classNameLower}UptVo);
     }
 
     @ResponseBody
     @RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
-    public ApiResult delete${className}(HttpServletRequest request, HttpServletResponse response, ${className}DelVo ${classNameLower}DelVo) {
+    public BaseResult delete${className}(HttpServletRequest request, HttpServletResponse response, ${className}DelVo ${classNameLower}DelVo) {
         return ${classNameLower}Service.delete(${classNameLower}DelVo);
     }
 
     @ResponseBody
     @RequestMapping(value = "/page", method = {RequestMethod.GET, RequestMethod.POST})
-    public ApiResult page(HttpServletRequest request, HttpServletResponse response, ${className}PageVo ${classNameLower}PageVo) {
+    public BaseResult page(HttpServletRequest request, HttpServletResponse response, ${className}PageVo ${classNameLower}PageVo) {
         return ${classNameLower}Service.page(${classNameLower}PageVo);
     }
 
     @ResponseBody
     @RequestMapping(value = "/get${classNameLower}s", method = {RequestMethod.GET, RequestMethod.POST})
-    public ApiResult ${classNameLower}s(HttpServletRequest request, HttpServletResponse response, ${className}ListVo ${classNameLower}ListVo) {
+    public BaseResult ${classNameLower}s(HttpServletRequest request, HttpServletResponse response, ${className}ListVo ${classNameLower}ListVo) {
         return ${classNameLower}Service.get${classNameLower}List(${classNameLower}ListVo);
     }
 
@@ -69,7 +69,7 @@ public class ${className}Controller  {
 
     @ResponseBody
     @RequestMapping(value = "/get${classNameLower}byid", method = {RequestMethod.GET, RequestMethod.POST})
-    public ApiResult get${classNameLower}ById(HttpServletRequest request, HttpServletResponse response, Long id) {
+    public BaseResult get${classNameLower}ById(HttpServletRequest request, HttpServletResponse response, Long id) {
         return ${classNameLower}Service.getById(id);
     }
 
