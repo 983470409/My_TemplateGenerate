@@ -23,10 +23,13 @@ import java.util.List;
 import ${basepackage}.module.${classNameLower}.model.reqVo.*;
 import ${basepackage}.module.${classNameLower}.model.respVo.*;
 import ${basepackage}.module.${classNameLower}.service.*;
+import org.springframework.validation.annotation.Validated;
+
 /**
  <#include "/java_description.include">
  */
 @Api
+@Validated
 @Controller
 @RequestMapping("/api/${appModule}/${classNameLower}")
 public class ${className}Controller  {

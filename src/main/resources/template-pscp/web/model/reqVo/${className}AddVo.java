@@ -7,6 +7,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
+import javax.validation.constraints.NotBlank;
+
 /**
  <#include "/java_description.include">
  */
@@ -17,6 +21,9 @@ public class ${className}AddVo implements Serializable {
 
     <#list table.columns as column>
     @ApiModelProperty(value = "${column.remarks}")
+    <#if column.hibernateValidatorExprssion != "">
+    ${column.hibernateValidatorExprssion}
+    </#if>
     private ${column.simpleJavaType} ${column.columnNameLower};  
     </#list>  
 
