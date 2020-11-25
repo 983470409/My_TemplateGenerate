@@ -68,8 +68,6 @@ public class ${className}Controller  {
         return ${classNameLower}Service.get${classNameLower}List(${classNameLower}ListVo);
     }
 
-
-
     @ResponseBody
     @RequestMapping(value = "/get${classNameLower}byid", method = {RequestMethod.GET, RequestMethod.POST})
     public BaseResult get${classNameLower}ById(HttpServletRequest request, HttpServletResponse response, Long id) {
