@@ -87,4 +87,14 @@ public class ${className}FacadeImpl implements ${className}Facade{
         return resultMap;
     }
 
+    /**
+     * 查询所有采集器信息
+     * @param context
+     * @return
+     * @throws AlarmCenterException
+     */
+    @Override
+    public List<${className}> findAll(HcContext context) throws AlarmCenterException {
+        return ${classNameLower}Dao.findAll();
+    }
 }

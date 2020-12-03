@@ -129,6 +129,15 @@ public class ${className}Dao {
 		return namedParameterJdbcTemplate.queryForObject(builder.toString(), JdbcUtil.getSqlParameterSource(${classNameLower}Vo),Integer.class);
 	}
 
+	/**
+	 * 查询所有的收集器
+	 * @return
+	 */
+	public List<${className}> findAll(){
+		String sql = "select "+Sql.BASE+" from ${table.sqlName}";
+		return jdbcTemplate.query(sql, ${classNameLower}RowMapper);
+	}
+
 
 	private static final class Sql{
 		private static final String BASE =	"<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>";

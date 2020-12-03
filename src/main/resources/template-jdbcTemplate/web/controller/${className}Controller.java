@@ -14,13 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import ${basepackage}.entity.${className};
-import ${basepackage}.facade.${className}Facade;
 import ${basepackage}.vo.${className}Vo;
 import io.swagger.annotations.Api;
-import com.gzhc365.${deptFlag}.common.PageBean;
-import com.gzhc365.cloud.commons.api.ApiResult;
+import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import java.util.Map;
+import io.swagger.annotations.ApiOperation;
 
 /**
  <#include "/java_description.include">
@@ -28,7 +27,7 @@ import java.util.Map;
 @Api
 @Controller
 @RequestMapping("/api/${appModule}/${classNameLower}")
-public class ${className}Controller  {
+public class ${className}Controller extends BaseController{
     private static final Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 
     @Autowired
@@ -38,7 +37,7 @@ public class ${className}Controller  {
     @RequestMapping(value = "/add",method = {RequestMethod.GET, RequestMethod.POST})
     @ApiOperation(value = "新增${className}",response = ${className}.class)
     public void add${className}(HttpServletRequest request, HttpServletResponse response,  @RequestBody ${className} ${classNameLower}) {
-        Map<String, Object> resultMap = threadWarningService.add(${classNameLower}, getHcContext(request));
+        Map<String, Object> resultMap = ${classNameLower}Service.add(${classNameLower}, getHcContext(request));
         this.sendData(response,resultMap );
     }
 
@@ -72,7 +71,7 @@ public class ${className}Controller  {
 
     /**
      * 分页查询
-     * @param warningThresholdHisHealthVo
+     * @param  ${classNameLower}Vo
      * @param request
      * @param response
      */

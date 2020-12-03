@@ -24,4 +24,12 @@ public interface ${className}Facade {
 
     Map<String,Object> page(${className}Vo ${classNameLower}Vo, HcContext context) throws AlarmCenterException;
 
+    /**
+     * 查询所有数据
+     * @param context
+     * @return
+     * @throws AlarmCenterException
+     */
+    List<${className}> findAll(HcContext context) throws AlarmCenterException;
+
 }

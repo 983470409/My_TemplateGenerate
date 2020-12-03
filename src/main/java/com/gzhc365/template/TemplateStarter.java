@@ -18,10 +18,10 @@ public class TemplateStarter {
 
     public static void main(String[] args) throws Exception  {
         GeneratorFacade g = new GeneratorFacade();
-        g.getGenerator().addTemplateRootDir(ClassLoader.getSystemResource("template-pscp").getPath());
+        g.getGenerator().addTemplateRootDir(ClassLoader.getSystemResource("template-jdbcTemplate").getPath());
         // 删除生成器的输出目录//
         g.deleteOutRootDir();
-        g.generateByTable("t_pscpopen_his_dict");
+        g.generateByTable("t_alarm_level_info","t_alarm_level_metric","t_alarm_level_service","t_alarm_level_strategy");
 //        g.generateByAllTable();
 
     }
