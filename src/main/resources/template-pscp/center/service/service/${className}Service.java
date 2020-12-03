@@ -74,4 +74,11 @@ public interface ${className}Service  {
      */
     int deleteByIds(List<String> ids);
 
+    /**
+     * 获得单个对象
+     * @param ${classNameLower}GetDto
+     * @return
+     */
+    ${className} get${className}By(${className}GetDto ${classNameLower}GetDto );
+
 }

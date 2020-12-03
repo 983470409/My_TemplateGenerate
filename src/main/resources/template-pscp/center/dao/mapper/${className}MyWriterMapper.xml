@@ -97,9 +97,9 @@
 		<foreach collection="list" item="item" index="index" separator=",">
 
 			(<#list table.columns as column>
-				<#if column.sqlName != "id">
+
 					<@mapperEl "item."+column.columnNameFirstLower /><#if column_has_next>,</#if>
-				</#if>
+
 			</#list>)
 
 		</foreach>

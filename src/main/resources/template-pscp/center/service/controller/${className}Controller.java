@@ -121,4 +121,15 @@ public class ${className}Controller implements ${className}Api{
         return new  BaseResult<>((PageBean<${className}>)${classNameLower}Service.listPage(${classNameLower}PageDto));
     }
 
+    /**
+     * 获得单个对象
+     * @param  ${classNameLower}GetDto
+     * @return
+     */
+    @Override
+    public BaseResult<${className}> get${className} (@RequestBody ${className}GetDto ${classNameLower}GetDto){
+        logger.info(" ${classNameLower}/get${className} 接收的参数为 {} " ,JSONObject.toJSON( ${classNameLower}GetDto));
+        return new BaseResult<>(${classNameLower}Service.get${className}By(${classNameLower}GetDto));
+    }
+
 }

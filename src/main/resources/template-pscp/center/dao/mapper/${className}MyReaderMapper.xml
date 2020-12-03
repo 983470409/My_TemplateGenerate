@@ -117,6 +117,15 @@
 			</foreach>
 	</select>
 
-
+	<select id="get${className}By" parameterType="${basepackage}.dto.${className}GetDto"
+			resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		${table.sqlName}
+		<where>
+			<include refid="condition_sql_like" />
+		</where>
+	</select>
 </mapper>
 

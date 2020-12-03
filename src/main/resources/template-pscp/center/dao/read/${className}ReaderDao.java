@@ -50,4 +50,12 @@ public interface ${className}ReaderDao {
     List<${className}> listPage(${className}PageDto t);
 
 
+    /**
+     * 获得单个数据
+     * @param t
+     * @return
+     */
+    ${className} get${className}By(${className}GetDto t);
+
+
 }

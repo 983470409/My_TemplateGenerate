@@ -130,4 +130,14 @@ public class ${className}ServiceImpl implements ${className}Service {
 	public int deleteByIds(List<String> ids){
 		return ${classNameLower}WriterDao.batchDelete(ids);
 	}
+
+	/**
+	 * 获得单个对象
+	 * @param ${classNameLower}GetDto
+	 * @return
+	 */
+	@Override
+	public ${className} get${className}By(${className}GetDto ${classNameLower}GetDto) {
+		return ${classNameLower}ReaderDao.get${className}By(${classNameLower}GetDto);
+	}
 }

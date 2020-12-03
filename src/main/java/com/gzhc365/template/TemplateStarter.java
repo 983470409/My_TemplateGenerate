@@ -21,8 +21,8 @@ public class TemplateStarter {
         g.getGenerator().addTemplateRootDir(ClassLoader.getSystemResource("template-pscp").getPath());
         // 删除生成器的输出目录//
         g.deleteOutRootDir();
-//        g.generateByTable("t_pscpuser_patient");
-        g.generateByAllTable();
+        g.generateByTable("t_pscpopen_his_dict");
+//        g.generateByAllTable();
 
     }
 

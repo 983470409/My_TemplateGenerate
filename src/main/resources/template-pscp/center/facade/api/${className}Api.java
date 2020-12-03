@@ -13,6 +13,7 @@ import ${basepackage}.entity.${className};
 import ${basepackage}.dto.*;
 import com.gzhc365.${deptFlag}.common.vo.PageBean;
 import org.springframework.validation.annotation.Validated;
+import javax.validation.Valid;
 
 /**
  <#include "/java_description.include">
@@ -42,7 +43,7 @@ public interface ${className}Api{
      * @return
      */
     @RequestMapping(value="${classNameLower}/save",  method = { RequestMethod.POST })
-    BaseResult<${className}> save(@RequestBody ${className}AddDto ${classNameLower}AddDto);
+    BaseResult<${className}> save(@Valid @RequestBody ${className}AddDto ${classNameLower}AddDto);
 
     /**
      * 更新数据
@@ -50,7 +51,7 @@ public interface ${className}Api{
      * @return
      */
     @RequestMapping(value="${classNameLower}/update",  method = { RequestMethod.POST })
-    BaseResult<Integer> update(@RequestBody ${className}UptDto ${classNameLower}UptDto);
+    BaseResult<Integer> update(@Valid @RequestBody ${className}UptDto ${classNameLower}UptDto);
 
     /**
      * 删除数据
@@ -75,4 +76,12 @@ public interface ${className}Api{
      */
     @RequestMapping(value="${classNameLower}/listPage",  method = { RequestMethod.POST })
     BaseResult<PageBean<${className}>> listPage(@RequestBody ${className}PageDto ${classNameLower}PageDto);
+
+    /**
+     * 获得单个对象
+     * @param  ${classNameLower}GetDto
+     * @return
+     */
+    @RequestMapping(value="${classNameLower}/get${className}",  method = { RequestMethod.POST })
+    BaseResult<${className}> get${className}(@RequestBody ${className}GetDto ${classNameLower}GetDto);
 }

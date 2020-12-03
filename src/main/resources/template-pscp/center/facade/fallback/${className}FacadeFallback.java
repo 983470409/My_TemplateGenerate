@@ -58,6 +58,10 @@ public class ${className}FacadeFallback implements FallbackFactory<${className}F
                 return BaseResult.error("服务繁忙，请稍候再试");
             }
 
+            public BaseResult<${className}> get${className}(${className}GetDto ${classNameLower}GetDto){
+                return BaseResult.error("服务繁忙，请稍候再试");
+            }
+
         };
 
     }
