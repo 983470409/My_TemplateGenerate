@@ -1,5 +1,5 @@
 <#assign className = table.className>
-<#assign classNameLower = className?uncap_first> 
+<#assign classNameLower = className?uncap_first>
 package ${basepackage}.dao;
 
 
@@ -83,7 +83,7 @@ public class ${className}Dao {
 
 	/**
 	 * 分页条件查询信息
-	 * @param menuVo
+	 * @param ${classNameLower}Vo
 	 * @return
  	*/
 	public List<${className}> paging(${className}Vo ${classNameLower}Vo){
@@ -139,15 +139,15 @@ public class ${className}Dao {
 	}
 
 
-	private static final class Sql{
-		private static final String BASE =	"<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>";
-		private static final String ADD = "insert into ${table.sqlName} (<#list table.columns as column><#if column.sqlName != "id">${column.sqlName}<#if column_has_next>,</#if></#if></#list>)"
-				+ "values (<#list table.columns as column><#if column.sqlName != "id">:${column.columnNameFirstLower}<#if column_has_next>,</#if></#if></#list>)";
-		private static final String UPDATE= "UPDATE ${table.sqlName} set "
-				+"<#list table.columns as column><#if column.sqlName != "id">${column.sqlName}=ifnull(:${column.columnNameFirstLower},${column.sqlName})<#if column_has_next>,</#if></#if></#list>"
-				+"WHERE id = :id";
-		private static final String PAGING= "select " + BASE + " from ${table.sqlName} where 1 = 1";
-		private static final String FINDBYID = "select " + BASE + " from ${table.sqlName} where id = ?";
-		private static final String COUNT = "select count(*) from ${table.sqlName} where 1 = 1";
-	}
+private static final class Sql{
+	private static final String BASE =	"<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>";
+	private static final String ADD = "insert into ${table.sqlName} (<#list table.columns as column><#if column.sqlName != "id" && column.sqlName != "create_time" && column.sqlName != "update_time">${column.sqlName}<#if column_has_next>,</#if></#if></#list>)"
+			+ "values (<#list table.columns as column><#if column.sqlName != "id" && column.sqlName != "create_time" && column.sqlName != "update_time">:${column.columnNameFirstLower}<#if column_has_next>,</#if></#if></#list>)";
+	private static final String UPDATE= "UPDATE ${table.sqlName} set "
+			+"<#list table.columns as column><#if column.sqlName != "id" && column.sqlName != "create_time" && column.sqlName != "update_time">${column.sqlName}=ifnull(:${column.columnNameFirstLower},${column.sqlName})<#if column_has_next>,</#if></#if></#list>"
+			+"WHERE id = :id";
+	private static final String PAGING= "select " + BASE + " from ${table.sqlName} where 1 = 1";
+	private static final String FINDBYID = "select " + BASE + " from ${table.sqlName} where id = ?";
+	private static final String COUNT = "select count(*) from ${table.sqlName} where 1 = 1";
+}
 }

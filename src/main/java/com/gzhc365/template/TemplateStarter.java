@@ -18,13 +18,19 @@ public class TemplateStarter {
 
     public static void main(String[] args) throws Exception  {
         GeneratorFacade g = new GeneratorFacade();
-        g.getGenerator().addTemplateRootDir(ClassLoader.getSystemResource("template-jdbcTemplate").getPath());
+        g.getGenerator().addTemplateRootDir(ClassLoader.getSystemResource("template-pscp").getPath());
         // 删除生成器的输出目录//
         g.deleteOutRootDir();
-        g.generateByTable("t_alarm_level_info","t_alarm_level_metric","t_alarm_level_service","t_alarm_level_strategy");
+//        g.generateByTable("t_fusing_switch","t_bizfusing_mapping","t_gwfusing_profile");
+//        g.generateByTable("t_hc_leader","t_hc_team","t_hc_member","t_hc_member_apply","t_hc_team_source","t_hc_lead_apply","t_hc_team_notice","t_hc_team_notice_read");
+//          g.generateByTable("t_hc_lead_apply","t_hc_leader");
+        g.generateByTable("t_hc_video","t_hc_video_file_directory","t_hc_user_address");
 //        g.generateByAllTable();
 
     }
+
+
+
 
 
 

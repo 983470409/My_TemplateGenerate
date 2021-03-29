@@ -20,6 +20,7 @@ import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import java.util.Map;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 
 /**
  <#include "/java_description.include">

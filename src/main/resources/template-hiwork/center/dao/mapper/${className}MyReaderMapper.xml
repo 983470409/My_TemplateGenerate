@@ -1,0 +1,131 @@
+<#include "/macro.include"/>
+<#assign className = table.className>
+<#assign classNameFirstLower = table.classNameFirstLower>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro namespace>${className}.</#macro>
+<mapper namespace="${basepackage}.dao.read.${className}ReaderDao">
+
+	<resultMap id="BaseResultMap" type="${basepackage}.entity.${className}">
+		<#list table.columns as column>
+			<#if column.sqlName == "id">
+				<id column="id" jdbcType="BIGINT" property="id" />
+			<#else>
+				<result column="${column.sqlName}" jdbcType="${column.jdbcType}" property="${column.columnNameFirstLower}" />
+			</#if>
+		</#list>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		<#list table.columns as column>
+			${column.sqlName}<#if column_has_next>,</#if>
+		</#list>
+	</sql>
+
+	<sql id="condition_sql">
+		<#list table.columns as column>
+		<#if column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
+			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />
+		</if>
+		</#if>
+		<#if !column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null">
+			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}" />
+		</if>
+		</#if>
+		</#list>
+		<if test="startDate != null">
+			AND create_time <![CDATA[ >= ]]> <@mapperEl "startDate"/>
+		</if>
+		<if test="endDate != null">
+			AND create_time <![CDATA[ <= ]]> <@mapperEl "endDate"/>
+		</if>
+	</sql>
+
+	<sql id="condition_sql_like">
+		<#list table.columns as column>
+		<#if column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
+			AND ${column.sqlName} like CONCAT('%', <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}"/> ,'%')
+		</if>
+		</#if>
+		<#if !column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null">
+			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower +",jdbcType=${column.jdbcType}" />
+		</if>
+		</#if>
+		</#list>
+		<if test="startDate != null">
+			AND create_time <![CDATA[ >= ]]> <@mapperEl "startDate"/>
+		</if>
+		<if test="endDate != null">
+			AND create_time <![CDATA[ <= ]]> <@mapperEl "endDate"/>
+		</if>
+	</sql>
+
+	<select id="selectByPrimaryKey" parameterType="long" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List"/>
+		from
+			${table.sqlName}
+		where id = <@mapperEl "id,jdbcType=BIGINT"/>
+	</select>
+
+	<select id="listPage" parameterType="${basepackage}.dto.${className}PageDto" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from
+		${table.sqlName}
+		<where>
+			<include refid="condition_sql_like" />
+		</where>
+      <![CDATA[ order by create_time desc]]>
+		limit <@mapperEl "pageFirst"/>,<@mapperEl "pageLast"/>
+	</select>
+
+	<select id="listPageCount" parameterType="${basepackage}.dto.${className}PageDto"
+		resultType="long">
+		select count(1) from
+		${table.sqlName}
+		<where>
+			<include refid="condition_sql_like" />
+		</where>
+	</select>
+
+	<select id="get${className}s" parameterType="${basepackage}.dto.${className}ListDto"  resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		${table.sqlName}
+		<where>
+			<include refid="condition_sql_like" />
+		</where>
+      <![CDATA[ order by create_time desc]]>
+	</select>
+
+	<select id="selectByPrimaryKeys" parameterType="java.util.List" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List"/>
+		from
+			${table.sqlName}
+		where id in
+			<foreach collection="list" item="id" open="(" separator="," close=")">
+				<@mapperEl "id"/>
+			</foreach>
+	</select>
+
+	<select id="get${className}By" parameterType="${basepackage}.dto.${className}GetDto"
+			resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		${table.sqlName}
+		<where>
+			<include refid="condition_sql_like" />
+		</where>
+	</select>
+</mapper>
+
