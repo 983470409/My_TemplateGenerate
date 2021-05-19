@@ -29,7 +29,8 @@ public class TemplateStarter {
 
 //        g.generateByAllTable();
 //        g.generateByTable("t_hc_hdj_nurse_order_comment","t_hc_hdj_his_patient_relation","t_hc_hdj_patient_contagion_record");
-        g.generateByTable("t_hc_hdj_shop");
+        g.generateByTable("t_hc_hdj_shop","t_hc_hdj_good","t_hc_hdj_good_desc","t_hc_hdj_shop_good");
+//        g.generateByTable("t_hc_hdj_good","t_hc_hdj_shop_good");
 
 
 
