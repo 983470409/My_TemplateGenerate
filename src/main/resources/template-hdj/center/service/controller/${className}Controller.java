@@ -104,6 +104,7 @@ public class ${className}Controller implements ${className}Facade{
      * @param  id
      * @return
      */
+    @Override
     public BaseResult<Integer> deleteById(@RequestParam("id") long id){
         logger.info(" ${classNameLower}/deleteById 接收的参数为 {} " ,JSONObject.toJSON(id));
 

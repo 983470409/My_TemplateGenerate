@@ -117,7 +117,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @return
 	 */
 	@Override
-	public List<${className}> selectByPrimaryKeys(List<String> ids){
+	public List<${className}> selectByPrimaryKeys(List<Long> ids){
 		return ${classNameLower}ReaderDao.selectByPrimaryKeys(ids);
 	}
 
@@ -127,7 +127,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @return
 	 */
 	@Override
-	public int deleteByIds(List<String> ids){
+	public int deleteByIds(List<Long> ids){
 		return ${classNameLower}WriterDao.batchDelete(ids);
 	}
 

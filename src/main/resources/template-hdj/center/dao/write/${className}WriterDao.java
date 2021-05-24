@@ -45,7 +45,7 @@ public interface ${className}WriterDao {
      * @param idList
      * @return
      */
-    int batchDelete(List<String> idList);
+    int batchDelete(List<Long> idList);
 
     /**
      * 批量插入多个
@@ -53,4 +53,11 @@ public interface ${className}WriterDao {
      * @return
      */
     int batchInsert(List<${className}> ${classNameLower}List);
+
+    /**
+     * 更新数据
+     * @param t
+     * @return
+     */
+    int updateSelective( ${className} t);
 }

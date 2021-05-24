@@ -53,4 +53,12 @@ public interface ${className}WriterDao {
      * @return
      */
     int batchInsert(List<${className}> ${classNameLower}List);
+
+    /**
+     * 更新数据
+     * @param t
+     * @return
+     */
+    int updateSelective( ${className} t);
 }
+

@@ -65,14 +65,14 @@ public interface ${className}Service  {
      * @param ids
      * @return
      */
-    List<${className}> selectByPrimaryKeys(List<String> ids);
+    List<${className}> selectByPrimaryKeys(List<Long> ids);
 
     /**
      * 根据主键id列表删除数据
      * @param ids
      * @return
      */
-    int deleteByIds(List<String> ids);
+    int deleteByIds(List<Long> ids);
 
     /**
      * 获得单个对象

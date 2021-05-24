@@ -25,7 +25,7 @@ public interface ${className}ReaderDao {
      * @param ids
      * @return
      */
-    List<${className}> selectByPrimaryKeys(List<String> ids);
+    List<${className}> selectByPrimaryKeys(List<Long> ids);
 
     /**
      * 通过参数获得数据

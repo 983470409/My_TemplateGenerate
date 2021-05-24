@@ -91,6 +91,25 @@
 		where id = <@mapperEl "id,jdbcType=BIGINT"/>
 	</update>
 
+	<update id="updateByPrimaryKeySelective" parameterType="${basepackage}.entity.${className}">
+		update ${table.sqlName}
+		<set>
+			<#list table.columns as column>
+			<#if column.isStringColumn>
+			<if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} !=''  ">
+				${column.sqlName} =  <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />,
+			</if>
+		</#if>
+		<#if !column.isStringColumn>
+		<if test="${column.columnNameFirstLower} != null">
+			${column.sqlName} =  <@mapperEl column.columnNameFirstLower+",jdbcType=${column.jdbcType}" />,
+		</if>
+		</#if>
+		</#list>
+		</set>
+		where id = <@mapperEl "id,jdbcType=BIGINT"/>
+	</update>
+
 	<insert id="batchInsert" parameterType="java.util.List">
 		insert into  ${table.sqlName}  ( <include refid="Base_Column_List" /> )
 		values
